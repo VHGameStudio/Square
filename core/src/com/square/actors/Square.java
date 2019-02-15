@@ -5,13 +5,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.square.box2d.SquareUserData;
 
 import static com.square.utils.Constants.COS_45;
-import static com.square.utils.Constants.HALT_RADIUS;
+import static com.square.utils.Constants.RADIUS_DELTA;
 import static com.square.utils.Constants.SQUARE_DOWNWARD_VELOCITY;
 import static com.square.utils.Constants.SQUARE_LEFTWARD_VELOCITY;
 import static com.square.utils.Constants.SQUARE_RIGHTWARD_VELOCITY;
 import static com.square.utils.Constants.SQUARE_UPWARD_VELOCITY;
 import static com.square.utils.Constants.SQUARE_ZERO_VELOCITY;
-import static java.lang.Math.sqrt;
 
 public class Square extends GameActor {
 
@@ -34,18 +33,17 @@ public class Square extends GameActor {
         double cosAngle = scal / (shifted.len() * axisX.len());
         double distance = shifted.len();
 
-        if (distance < HALT_RADIUS) {
-            body.setLinearVelocity(SQUARE_ZERO_VELOCITY);
-        } else if (COS_45 > cosAngle && (-COS_45) < cosAngle && actual.y < touchDown.y) {
-            body.setLinearVelocity(SQUARE_UPWARD_VELOCITY);
-        } else if (COS_45 <= cosAngle) {
-            body.setLinearVelocity(SQUARE_RIGHTWARD_VELOCITY);
-        } else if ((-COS_45) >= cosAngle) {
-            body.setLinearVelocity(SQUARE_LEFTWARD_VELOCITY);
-        } else {
-            body.setLinearVelocity(SQUARE_DOWNWARD_VELOCITY);
+        if (distance > RADIUS_DELTA) {
+            if (COS_45 > cosAngle && (-COS_45) < cosAngle && actual.y < touchDown.y) {
+                body.setLinearVelocity(SQUARE_UPWARD_VELOCITY);
+            } else if (COS_45 <= cosAngle) {
+                body.setLinearVelocity(SQUARE_RIGHTWARD_VELOCITY);
+            } else if ((-COS_45) >= cosAngle) {
+                body.setLinearVelocity(SQUARE_LEFTWARD_VELOCITY);
+            } else if (COS_45 > cosAngle && (-COS_45) < cosAngle && actual.y > touchDown.y) {
+                body.setLinearVelocity(SQUARE_DOWNWARD_VELOCITY);
+            }
         }
-
     }
 
     public void stop() {

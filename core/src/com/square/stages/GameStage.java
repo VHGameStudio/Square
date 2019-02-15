@@ -18,6 +18,8 @@ import com.square.actors.Wall;
 import com.square.actors.Square;
 import com.square.utils.WorldUtils;
 
+import static com.square.utils.Constants.NEW_COORDINATE_PLANE_DELTA;
+
 public class GameStage extends Stage implements ContactListener {
 
     private World world;
@@ -32,6 +34,8 @@ public class GameStage extends Stage implements ContactListener {
 
     private Vector3 touchPoint;
     private Vector2 touchDown;
+    private Vector2 actual;
+    private Vector2 previous;
 
     public GameStage() {
         setUpWorld();
@@ -84,7 +88,7 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setUpRunner() {
         square = new Square(WorldUtils.createSquare(world));
-        //TODO: set a color
+        // TODO: set a color for square (and background, too, e.g. white)
         addActor(square);
     }
 
@@ -136,13 +140,27 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        Vector2 actual = new Vector2(screenX, screenY);
+        actual = new Vector2(screenX, screenY);
+        Vector2 tmp;
+
+        if (previous != null) {
+            tmp = new Vector2(
+                    actual.x - previous.x,
+                    actual.y - previous.y);
+
+            if (tmp.len() < NEW_COORDINATE_PLANE_DELTA) {
+                touchDown = previous;
+            }
+        }
+
         square.move(actual, touchDown);
+        previous = actual;
 
         return super.touchDragged(screenX, screenY, pointer);
     }
 
     private void translateScreenToWorldCoordinates(int x, int y) {
+        //TODO: not sure if it does affect or I can remove the method
         getCamera().unproject(touchPoint.set(x, y, 0));
     }
 }

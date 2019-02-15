@@ -7,7 +7,9 @@ public class Constants {
     public static final double COS_45 = 0.52532198881;
 
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, 0);
-    public static final int HALT_RADIUS = 100;
+
+    public static final int RADIUS_DELTA = 30;
+    public static final int NEW_COORDINATE_PLANE_DELTA = 3;
 
     public static final float VIEWPORT_WIDTH = 30;
 
