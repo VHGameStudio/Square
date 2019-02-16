@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.square.actors.Background;
 import com.square.actors.Wall;
 import com.square.actors.Square;
 import com.square.utils.WorldUtils;
@@ -50,6 +51,7 @@ public class GameStage extends Stage implements ContactListener {
         world = WorldUtils.createWorld();
         world.setContactListener(this);
      //   setUpWall();
+        setUpBackground();
         setUpRunner();
     }
 
@@ -117,10 +119,15 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
+    //TODO: delete this. We won't use it anymore soon
     @Override
     public void draw() {
         super.draw();
         renderer.render(world, camera.combined);
+    }
+
+    private void setUpBackground() {
+        addActor(new Background());
     }
 
     @Override
