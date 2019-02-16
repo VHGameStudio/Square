@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.square.box2d.SquareUserData;
 
 import static com.square.utils.Constants.COS_45;
-import static com.square.utils.Constants.RADIUS_UPS;
+import static com.square.utils.Constants.RADIUS_EPS;
 import static com.square.utils.Constants.SQUARE_DOWNWARD_VELOCITY;
 import static com.square.utils.Constants.SQUARE_LEFTWARD_VELOCITY;
 import static com.square.utils.Constants.SQUARE_RIGHTWARD_VELOCITY;
@@ -33,7 +33,7 @@ public class Square extends GameActor {
         double cosAngle = scal / (shifted.len() * axisX.len());
         double distance = shifted.len();
 
-        if (distance > RADIUS_UPS) {
+        if (distance > RADIUS_EPS) {
             if (COS_45 > cosAngle && (-COS_45) < cosAngle && actual.y < touchDown.y) {
                 body.setLinearVelocity(SQUARE_UPWARD_VELOCITY);
             } else if (COS_45 <= cosAngle) {

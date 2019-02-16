@@ -8,7 +8,7 @@ public class Constants {
 
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, 0);
 
-    public static final int RADIUS_UPS = 30;
+    public static final int RADIUS_EPS = 30;
     public static final int NEW_COORDINATE_PLANE_DELTA = 3;
 
     public static final float VIEWPORT_WIDTH = 30;
