@@ -1,8 +1,10 @@
 package com.square.actors;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.square.box2d.SquareUserData;
 
@@ -19,24 +21,29 @@ import static com.square.utils.Resources.SQUARE_BLUE;
 
 public class Square extends GameActor {
 
-    Texture squareTexture;
-
-    public Square(Body body) {
+    public Square(Body body, OrthographicCamera camera) {
         super(body);
+        this.camera = camera;
 
-        squareTexture = new Texture(SQUARE_BLUE);
+        texture = new Texture(SQUARE_BLUE);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
+        Vector3 tmp = new Vector3(
+                body.getPosition().x - SQUARE_HEIGHT / 2,
+                body.getPosition().y - SQUARE_WIDTH / 2,
+                0);
+        camera.project(tmp);
+
         batch.draw(
-                squareTexture,
-                screenRectangle.x,
-                screenRectangle.y,
-                WorldToScreen(SQUARE_WIDTH),
-                WorldToScreen(SQUARE_HEIGHT));
+                texture,
+                tmp.x,
+                tmp.y,
+                worldToScreen(SQUARE_WIDTH),
+                worldToScreen(SQUARE_HEIGHT));
     }
 
     @Override

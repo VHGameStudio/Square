@@ -25,6 +25,7 @@ public class Constants {
     public static final Vector2 SQUARE_LEFTWARD_VELOCITY = new Vector2(-15, 0);
     public static final Vector2 SQUARE_RIGHTWARD_VELOCITY = new Vector2(15, 0);
 
-    public static final float WORLD_TO_SCREEN = 32;
+    //TODO: delete
+    public static final float WORLD_TO_SCREEN = 36;
 
 }

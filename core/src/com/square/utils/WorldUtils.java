@@ -8,6 +8,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.square.box2d.WallUserData;
 import com.square.box2d.SquareUserData;
 
+import static com.square.utils.Constants.SQUARE_DENSITY;
+
 public class WorldUtils {
 
     public static World createWorld() {
@@ -16,16 +18,27 @@ public class WorldUtils {
 
 /*    public static Body createWall(World world) {
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(*//*Generate*//*);
+        bodyDef.position.set(Generate);
         Body body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(*//*Generate*//*);
-        body.createFixture(shape, *//*Generate density*//*);
+        shape.setAsBox(Generate);
+        body.createFixture(shape, Generate density);
         body.setUserData(new WallUserData(width and height must be generated somehow));
         shape.dispose();
 
         return body;
     }*/
+
+    public static Body createTestWall(World world) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(new Vector2(10, 20));
+        Body body = world.createBody(bodyDef);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(5, 2);
+        body.createFixture(shape, SQUARE_DENSITY);
+        shape.dispose();
+        return body;
+    }
 
 
     public static Body createSquare(World world) {
@@ -36,7 +49,7 @@ public class WorldUtils {
         shape.setAsBox(Constants.SQUARE_WIDTH / 2, Constants.SQUARE_HEIGHT / 2);
         Body body = world.createBody(bodyDef);
         body.setUserData(new SquareUserData());
-        body.createFixture(shape, Constants.SQUARE_DENSITY);
+        body.createFixture(shape, SQUARE_DENSITY);
         shape.dispose();
 
         return body;

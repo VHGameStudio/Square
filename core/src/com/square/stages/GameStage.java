@@ -37,8 +37,8 @@ public class GameStage extends Stage implements ContactListener {
     private Vector2 previous;
 
     public GameStage() {
-        setUpWorld();
         setUpCamera();
+        setUpWorld();
         Gdx.input.setInputProcessor(this);
         touchPoint = new Vector3();
         touchDown = new Vector2();
@@ -48,7 +48,7 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpWorld() {
         world = WorldUtils.createWorld();
         world.setContactListener(this);
-     //   setUpWall();
+        setUpWall();
         setUpBackground();
         setUpSquare();
     }
@@ -81,13 +81,13 @@ public class GameStage extends Stage implements ContactListener {
 
     }
 
-/*    private void setUpWall() {
-        wall = new Wall(WorldUtils.createWall(world));
+    private void setUpWall() {
+        wall = new Wall(WorldUtils.createTestWall(world), camera);
         addActor(wall);
-    }*/
+    }
 
     private void setUpSquare() {
-        square = new Square(WorldUtils.createSquare(world));
+        square = new Square(WorldUtils.createSquare(world), camera);
         // TODO: set a color for square (and background, too, e.g. white)
         addActor(square);
     }
@@ -130,7 +130,7 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
-        translateScreenToWorldCoordinates(x, y);
+        screenToWorld(x, y);
         touchDown.set(x, y);
 
         return super.touchDown(x, y, pointer, button);
@@ -164,8 +164,7 @@ public class GameStage extends Stage implements ContactListener {
         return super.touchDragged(screenX, screenY, pointer);
     }
 
-    private void translateScreenToWorldCoordinates(int x, int y) {
-        //TODO: not sure if it does affect or I can remove the method
+    private void screenToWorld(int x, int y) {
         getCamera().unproject(touchPoint.set(x, y, 0));
     }
 }
