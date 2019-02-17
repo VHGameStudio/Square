@@ -18,6 +18,7 @@ public class WorldUtils {
 
 /*    public static Body createWall(World world) {
         BodyDef bodyDef = new BodyDef();
+        bodyDef.fixedRotation = true;
         bodyDef.position.set(Generate);
         Body body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
@@ -31,6 +32,7 @@ public class WorldUtils {
 
     public static Body createTestWall(World world) {
         BodyDef bodyDef = new BodyDef();
+        bodyDef.fixedRotation = true;
         bodyDef.position.set(new Vector2(10, 20));
         Body body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
@@ -43,6 +45,7 @@ public class WorldUtils {
 
     public static Body createSquare(World world) {
         BodyDef bodyDef = new BodyDef();
+        bodyDef.fixedRotation = true;
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(new Vector2(Constants.SQUARE_X / 2, Constants.SQUARE_Y / 2));
         PolygonShape shape = new PolygonShape();
