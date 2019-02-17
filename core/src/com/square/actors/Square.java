@@ -2,7 +2,6 @@ package com.square.actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.square.box2d.SquareUserData;
@@ -32,18 +31,12 @@ public class Square extends GameActor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
-        /*
-        * У Batch начало координат внизу слева, а у квадрата вверху.
-        * То есть, когда я посылаю координаты квадрата и говорю нарисоваться в 0, 0,
-        * он рисуется в экранных координатах в 0, 0
-        * */
-
         batch.draw(
                 squareTexture,
                 screenRectangle.x,
                 screenRectangle.y,
-                transformToScreen(SQUARE_WIDTH),
-                transformToScreen(SQUARE_HEIGHT));
+                WorldToScreen(SQUARE_WIDTH),
+                WorldToScreen(SQUARE_HEIGHT));
     }
 
     @Override
