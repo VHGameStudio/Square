@@ -19,13 +19,14 @@ public class Constants {
     public static final float SQUARE_HEIGHT = 2f;
     public static float SQUARE_DENSITY = 0.5f;
 
+    public static final float SQUARE_VELOCITY = 10;
     public static final Vector2 SQUARE_ZERO_VELOCITY = new Vector2(0, 0);
-    public static final Vector2 SQUARE_UPWARD_VELOCITY = new Vector2(0, 15);
-    public static final Vector2 SQUARE_DOWNWARD_VELOCITY = new Vector2(0, -15);
-    public static final Vector2 SQUARE_LEFTWARD_VELOCITY = new Vector2(-15, 0);
-    public static final Vector2 SQUARE_RIGHTWARD_VELOCITY = new Vector2(15, 0);
+    public static final Vector2 SQUARE_UPWARD_VELOCITY = new Vector2(0, SQUARE_VELOCITY);
+    public static final Vector2 SQUARE_DOWNWARD_VELOCITY = new Vector2(0, -SQUARE_VELOCITY);
+    public static final Vector2 SQUARE_LEFTWARD_VELOCITY = new Vector2(-SQUARE_VELOCITY, 0);
+    public static final Vector2 SQUARE_RIGHTWARD_VELOCITY = new Vector2(SQUARE_VELOCITY, 0);
 
-    //TODO: delete
+    //TODO: I has randomly chosed this number but it works
     public static final float WORLD_TO_SCREEN = 36;
 
 }
