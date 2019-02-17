@@ -37,12 +37,15 @@ public abstract class GameActor extends Actor {
     }
 
     private void updateRectangle() {
+        //TODO smth about that cos I don't use screenRectangle but it was supposed to be used
+        //so why does it not work?
         screenRectangle.x = worldToScreen(body.getPosition().x - userData.getWidth() / 2);
         screenRectangle.y = worldToScreen(body.getPosition().y - userData.getHeight() / 2);
         screenRectangle.width = worldToScreen(userData.getWidth());
         screenRectangle.height = worldToScreen(userData.getHeight());
     }
 
+    //Is used to translate width and height cos it works good for it but shitty for x and y
     protected float worldToScreen(float n) {
         return WORLD_TO_SCREEN * n;
     }

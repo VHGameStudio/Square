@@ -8,6 +8,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.square.box2d.WallUserData;
 import com.square.box2d.SquareUserData;
 
+import java.util.Random;
+
 import static com.square.utils.Constants.SQUARE_DENSITY;
 
 public class WorldUtils {
@@ -31,12 +33,19 @@ public class WorldUtils {
     }*/
 
     public static Body createTestWall(World world) {
+        Random rnd = new Random(System.currentTimeMillis());
+
+        int w = 2 + rnd.nextInt(15 - 2 + 1);
+        int h = 2 + rnd.nextInt(15 - 2 + 1);
+        int x = -8 + rnd.nextInt(8 - (-8) + 1);
+        int y = -15 + rnd.nextInt(15 - (-15) + 1);
+
         BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = true;
-        bodyDef.position.set(new Vector2(10, 20));
+        bodyDef.position.set(new Vector2(x, y));
         Body body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(5, 2);
+        shape.setAsBox(h / 2f, w / 2f);
         body.createFixture(shape, SQUARE_DENSITY);
         shape.dispose();
         return body;
