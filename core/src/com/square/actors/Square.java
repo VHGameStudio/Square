@@ -40,8 +40,8 @@ public class Square extends GameActor {
 
         batch.draw(
                 squareTexture,
-                transformToScreen(body.getPosition().x),
-                transformToScreen(body.getPosition().y),
+                screenRectangle.x,
+                screenRectangle.y,
                 transformToScreen(SQUARE_WIDTH),
                 transformToScreen(SQUARE_HEIGHT));
     }
