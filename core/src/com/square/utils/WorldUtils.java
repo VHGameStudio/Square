@@ -21,7 +21,7 @@ public class WorldUtils {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(*//*Generate*//*);
         body.createFixture(shape, *//*Generate density*//*);
-        body.setUserData(new WallUserData());
+        body.setUserData(new WallUserData(width and height must be generated somehow));
         shape.dispose();
 
         return body;

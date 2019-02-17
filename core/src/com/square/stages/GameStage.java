@@ -12,8 +12,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.square.actors.Background;
 import com.square.actors.Wall;
 import com.square.actors.Square;
@@ -52,7 +50,7 @@ public class GameStage extends Stage implements ContactListener {
         world.setContactListener(this);
      //   setUpWall();
         setUpBackground();
-        setUpRunner();
+        setUpSquare();
     }
 
 
@@ -88,7 +86,7 @@ public class GameStage extends Stage implements ContactListener {
         addActor(wall);
     }*/
 
-    private void setUpRunner() {
+    private void setUpSquare() {
         square = new Square(WorldUtils.createSquare(world));
         // TODO: set a color for square (and background, too, e.g. white)
         addActor(square);
