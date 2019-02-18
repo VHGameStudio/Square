@@ -1,5 +1,6 @@
 package com.square.actors;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.square.box2d.UserData;
 
 import static com.square.utils.Constants.WORLD_TO_SCREEN;
+import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
 
 public abstract class GameActor extends Actor {
 
@@ -45,9 +47,10 @@ public abstract class GameActor extends Actor {
         screenRectangle.height = worldToScreen(userData.getHeight());
     }
 
-    //Is used to translate width and height cos it works good for it but shitty for x and y
+    //Is used to translate width and height cos it works good for it but shitty for x  and y
     protected float worldToScreen(float n) {
-        return WORLD_TO_SCREEN * n;
+        float coef = WORLD_TO_SCREEN * (float)Gdx.graphics.getWidth()/ DEFAULT_SCREEN_WIDTH;
+        return n * coef;
     }
 
     public abstract UserData getUserData();

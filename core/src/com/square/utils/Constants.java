@@ -28,5 +28,7 @@ public class Constants {
 
     //TODO: I has randomly chosed this number but it works
     public static final float WORLD_TO_SCREEN = 36;
+    //WORLD_TO_SCREEN works only for this screen width
+    public static final float DEFAULT_SCREEN_WIDTH = 1080;
 
 }
