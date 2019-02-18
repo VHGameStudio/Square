@@ -33,6 +33,9 @@ public abstract class GameActor extends Actor {
     public void act(float delta) {
         super.act(delta);
 
+        //TODO smth about it
+        //updateRectangle executes for Wall, too
+        // but they are static and the positions are always the same
         if (body.getUserData() != null) {
             updateRectangle();
         } else {

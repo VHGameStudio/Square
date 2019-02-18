@@ -46,7 +46,7 @@ public class WorldUtils {
         Body body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(h / 2f, w / 2f);
-        body.createFixture(shape, SQUARE_DENSITY);
+        body.createFixture(shape, 1);
         shape.dispose();
         return body;
     }

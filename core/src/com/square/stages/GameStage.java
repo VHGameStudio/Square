@@ -83,9 +83,8 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpWall() {
-        for (int i = 0; i < 6; ++i) {
-            wall = new Wall(WorldUtils.createTestWall(world), camera);
-            addActor(wall);
+        for (int i = 0; i < 3; ++i) {
+            addActor(new Wall(WorldUtils.createTestWall(world), camera));
         }
     }
 
