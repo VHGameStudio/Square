@@ -83,7 +83,7 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpWall() {
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 6; ++i) {
             wall = new Wall(WorldUtils.createTestWall(world), camera);
             addActor(wall);
         }
@@ -91,7 +91,6 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setUpSquare() {
         square = new Square(WorldUtils.createSquare(world), camera);
-        // TODO: set a color for square (and background, too, e.g. white)
         addActor(square);
     }
 

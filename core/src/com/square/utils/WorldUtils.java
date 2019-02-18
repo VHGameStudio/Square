@@ -35,9 +35,9 @@ public class WorldUtils {
     public static Body createTestWall(World world) {
         Random rnd = new Random(System.currentTimeMillis());
 
-        int w = 2 + rnd.nextInt(15 - 2 + 1);
-        int h = 2 + rnd.nextInt(15 - 2 + 1);
-        int x = -8 + rnd.nextInt(8 - (-8) + 1);
+        int w = -10 + rnd.nextInt(10 - (-10) + 1);
+        int h = -10 + rnd.nextInt(10 - (-10) + 1);
+        int x = -20 + rnd.nextInt(20 - (-20) + 1);
         int y = -20 + rnd.nextInt(20 - (-20) + 1);
 
         BodyDef bodyDef = new BodyDef();

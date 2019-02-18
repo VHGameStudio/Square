@@ -26,9 +26,7 @@ public class Constants {
     public static final Vector2 SQUARE_LEFTWARD_VELOCITY = new Vector2(-SQUARE_VELOCITY, 0);
     public static final Vector2 SQUARE_RIGHTWARD_VELOCITY = new Vector2(SQUARE_VELOCITY, 0);
 
-    //TODO: I has randomly chosed this number but it works
     public static final float WORLD_TO_SCREEN = 36;
-    //WORLD_TO_SCREEN works only for this screen width
     public static final float DEFAULT_SCREEN_WIDTH = 1080;
 
 }
