@@ -32,18 +32,12 @@ public class Square extends GameActor {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
 
-        Vector3 tmp = new Vector3(
-                body.getPosition().x - SQUARE_HEIGHT / 2,
-                body.getPosition().y - SQUARE_WIDTH / 2,
-                0);
-        camera.project(tmp);
-
         batch.draw(
                 texture,
-                tmp.x,
-                tmp.y,
-                worldToScreen(SQUARE_WIDTH),
-                worldToScreen(SQUARE_HEIGHT));
+                screenRectangle.x,
+                screenRectangle.y,
+                screenRectangle.width,
+                screenRectangle.height);
     }
 
     @Override

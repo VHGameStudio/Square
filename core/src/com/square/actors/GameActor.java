@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.square.box2d.UserData;
@@ -19,11 +20,13 @@ public abstract class GameActor extends Actor {
     protected Body body;
     protected UserData userData;
     protected Rectangle screenRectangle;
+    Vector3 coordinates;
 
     public GameActor(Body body) {
         this.body = body;
         this.userData = (UserData) body.getUserData();
         screenRectangle = new Rectangle();
+        coordinates = new Vector3();
     }
 
     @Override
@@ -39,17 +42,21 @@ public abstract class GameActor extends Actor {
     }
 
     private void updateRectangle() {
-        //TODO smth about that cos I don't use screenRectangle but it was supposed to be used
-        //so why does it not work?
-        screenRectangle.x = worldToScreen(body.getPosition().x - userData.getWidth() / 2);
-        screenRectangle.y = worldToScreen(body.getPosition().y - userData.getHeight() / 2);
+        //worldToScreen works for height and width but doesn't work for x and y
+        //so I want this way
+        coordinates.x = body.getPosition().x - userData.getWidth() / 2;
+        coordinates.y = body.getPosition().y - userData.getHeight() / 2;
+
+        camera.project(coordinates);
+
+        screenRectangle.x = coordinates.x;
+        screenRectangle.y = coordinates.y;
         screenRectangle.width = worldToScreen(userData.getWidth());
         screenRectangle.height = worldToScreen(userData.getHeight());
     }
 
-    //Is used to translate width and height cos it works good for it but shitty for x  and y
     protected float worldToScreen(float n) {
-        float coef = WORLD_TO_SCREEN * (float)Gdx.graphics.getWidth()/ DEFAULT_SCREEN_WIDTH;
+        float coef = WORLD_TO_SCREEN * Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
         return n * coef;
     }
 

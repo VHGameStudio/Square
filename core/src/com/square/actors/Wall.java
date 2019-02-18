@@ -1,8 +1,15 @@
 package com.square.actors;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.square.box2d.WallUserData;
+
+import static com.square.utils.Constants.SQUARE_HEIGHT;
+import static com.square.utils.Constants.SQUARE_WIDTH;
+import static com.square.utils.Resources.TEST_WALL;
 
 public class Wall extends GameActor {
 
@@ -10,6 +17,7 @@ public class Wall extends GameActor {
         super(body);
 
         this.camera = camera;
+        texture = new Texture(TEST_WALL);
     }
 
     @Override
@@ -17,5 +25,21 @@ public class Wall extends GameActor {
         return (WallUserData) userData;
     }
 
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
 
+        Vector3 tmp = new Vector3(
+                body.getPosition().x - SQUARE_HEIGHT / 2,
+                body.getPosition().y - SQUARE_WIDTH / 2,
+                0);
+        camera.project(tmp);
+
+        batch.draw(
+                texture,
+                tmp.x,
+                tmp.y,
+                worldToScreen(SQUARE_WIDTH),
+                worldToScreen(SQUARE_HEIGHT));
+    }
 }

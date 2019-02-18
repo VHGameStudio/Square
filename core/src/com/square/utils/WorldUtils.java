@@ -38,7 +38,7 @@ public class WorldUtils {
         int w = 2 + rnd.nextInt(15 - 2 + 1);
         int h = 2 + rnd.nextInt(15 - 2 + 1);
         int x = -8 + rnd.nextInt(8 - (-8) + 1);
-        int y = -15 + rnd.nextInt(15 - (-15) + 1);
+        int y = -20 + rnd.nextInt(20 - (-20) + 1);
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = true;
@@ -60,7 +60,7 @@ public class WorldUtils {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(Constants.SQUARE_WIDTH / 2, Constants.SQUARE_HEIGHT / 2);
         Body body = world.createBody(bodyDef);
-        body.setUserData(new SquareUserData());
+        body.setUserData(new SquareUserData(Constants.SQUARE_WIDTH, Constants.SQUARE_HEIGHT));
         body.createFixture(shape, SQUARE_DENSITY);
         shape.dispose();
 
