@@ -32,6 +32,7 @@ public class GameStage extends Stage implements ContactListener {
     private Box2DDebugRenderer renderer;
 
     private Vector3 touchPoint;
+
     private Vector2 touchDown;
     private Vector2 actual;
     private Vector2 previous;
@@ -119,7 +120,7 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
-    //TODO: delete this. We won't use it anymore soon
+    //TODO: comment this after we put the textures on
     @Override
     public void draw() {
         super.draw();
