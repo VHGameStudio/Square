@@ -21,8 +21,8 @@ public class WorldUtils {
     public static Body createWall(World world) {
         Random rnd = new Random(System.currentTimeMillis());
 
-        float w = -10 + rnd.nextInt(10 - (-10) + 1);
-        float h = -10 + rnd.nextInt(10 - (-10) + 1);
+        float w = 2 + rnd.nextInt(10 - 2 + 1);
+        float h = 2 + rnd.nextInt(10 - 2 + 1);
         float x = -20 + rnd.nextInt(20 - (-20) + 1);
         float y = -20 + rnd.nextInt(20 - (-20) + 1);
 
