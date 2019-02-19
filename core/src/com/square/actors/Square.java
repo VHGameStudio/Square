@@ -4,18 +4,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.square.box2d.SquareUserData;
 
 import static com.square.utils.Constants.COS_45;
 import static com.square.utils.Constants.RADIUS_EPS;
 import static com.square.utils.Constants.SQUARE_DOWNWARD_VELOCITY;
-import static com.square.utils.Constants.SQUARE_HEIGHT;
 import static com.square.utils.Constants.SQUARE_LEFTWARD_VELOCITY;
 import static com.square.utils.Constants.SQUARE_RIGHTWARD_VELOCITY;
 import static com.square.utils.Constants.SQUARE_UPWARD_VELOCITY;
-import static com.square.utils.Constants.SQUARE_WIDTH;
 import static com.square.utils.Constants.SQUARE_ZERO_VELOCITY;
 import static com.square.utils.Resources.SQUARE_BLUE;
 
@@ -34,6 +31,7 @@ public class Square extends GameActor {
         camera.position.x = body.getPosition().x;
         camera.position.y = body.getPosition().y;
         camera.update();
+
         batch.draw(
                 texture,
                 screenRectangle.x,

@@ -49,8 +49,8 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpWorld() {
         world = WorldUtils.createWorld();
         world.setContactListener(this);
-        setUpWall();
         setUpBackground();
+        setUpWall();
         setUpSquare();
     }
 
@@ -119,11 +119,11 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     //TODO: comment this after we put the textures on
-    @Override
+/*    @Override
     public void draw() {
         super.draw();
         renderer.render(world, camera.combined);
-    }
+    }*/
 
     private void setUpBackground() {
         addActor(new Background());
