@@ -9,4 +9,9 @@ public class WallUserData extends UserData {
         userDataType = UserDataType.WALL;
     }
 
+    public WallUserData(float width, float height) {
+        super(width, height);
+        userDataType = UserDataType.WALL;
+    }
+
 }
