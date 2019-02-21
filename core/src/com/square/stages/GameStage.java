@@ -44,7 +44,6 @@ public class GameStage extends Stage implements ContactListener {
     private Wall wall;
     private Square square;
     private Background background;
-    private Background logo;
 
     private GameState gameState;
 
@@ -111,13 +110,6 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
-    private class GameSoundButtonListener implements SoundButton.SoundButtonListener {
-
-        @Override
-        public void onSound() {
-
-        }
-    }
 
     private void setUpMainMenu() {
         setUpPlay();
@@ -142,7 +134,7 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpSettings() {
         float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
         float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
-        float pos_x = playButton.getX()-BUTTON_DELTA*coef_x;
+        float pos_x = playButton.getX() - BUTTON_DELTA * coef_x;
         float pos_y = (BUTTON_Y * coef_y);
         float width = BUTTON_WIDTH * coef_y;
         float height = BUTTON_HEIGHT * coef_y;
@@ -156,14 +148,14 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpSound() {
         float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
         float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
-        float pos_x = playButton.getX()+BUTTON_DELTA*coef_x;
+        float pos_x = playButton.getX() + BUTTON_DELTA * coef_x;
         float pos_y = (BUTTON_Y * coef_y);
         float width = BUTTON_WIDTH * coef_y;
         float height = BUTTON_HEIGHT * coef_y;
 
         Rectangle soundButtonBounds = new Rectangle(pos_x,
                 pos_y, width, height);
-        soundButton = new SoundButton(soundButtonBounds, new GameSoundButtonListener());
+        soundButton = new SoundButton(soundButtonBounds);
         addActor(soundButton);
     }
 
