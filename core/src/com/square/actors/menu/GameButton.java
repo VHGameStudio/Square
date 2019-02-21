@@ -22,9 +22,8 @@ public abstract class GameButton extends Button {
         loadTextureRegion();
         addListener(new ClickListener() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 touched();
-                return true;
             }
         });
     }
