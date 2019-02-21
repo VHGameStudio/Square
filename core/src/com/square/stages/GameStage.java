@@ -2,6 +2,7 @@ package com.square.stages;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -15,15 +16,22 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.square.actors.Background;
 import com.square.actors.Wall;
 import com.square.actors.Square;
+import com.square.actors.menu.PlayButton;
 import com.square.utils.WorldUtils;
 
 import static com.square.utils.Constants.NEW_COORDINATE_PLANE_DELTA;
+
 
 public class GameStage extends Stage implements ContactListener {
 
     private World world;
     private Wall wall;
     private Square square;
+
+    //TODO: add GameStates
+    private boolean running = false;
+
+    private PlayButton playButton;
 
     private final float TIME_STEP = 1 / 300f;
     private float accumulator = 0f;
@@ -40,18 +48,59 @@ public class GameStage extends Stage implements ContactListener {
     public GameStage() {
         setUpCamera();
         setUpWorld();
+        setUpMainMenu();
         Gdx.input.setInputProcessor(this);
-        touchPoint = new Vector3();
-        touchDown = new Vector2();
         renderer = new Box2DDebugRenderer();
     }
+
 
     private void setUpWorld() {
         world = WorldUtils.createWorld();
         world.setContactListener(this);
         setUpBackground();
+    }
+
+    private void setUpGameObjects() {
         setUpWall();
         setUpSquare();
+    }
+
+    private void setUpControls() {
+        touchPoint = new Vector3();
+        touchDown = new Vector2();
+    }
+
+    private class GamePlayButtonListener implements PlayButton.PlayButtonListener {
+
+        @Override
+        public void onStart() {
+            clear();
+            setUpStageBase();
+            running = true;
+        }
+    }
+
+    private void setUpMainMenu() {
+        setUpPlay();
+    }
+
+    private void setUpPlay() {
+        float width = 150;
+        float height = 150;
+        float pos_x = (getCamera().position.x + Gdx.graphics.getWidth() - width) / 2;
+        float pos_y = (getCamera().position.y + Gdx.graphics.getHeight() - height) / 2;
+        Rectangle playButtonBounds = new Rectangle(pos_x,
+                pos_y, width,
+                height);
+        playButton = new PlayButton(playButtonBounds, new GamePlayButtonListener());
+        addActor(playButton);
+    }
+
+    private void setUpStageBase() {
+        setUpWorld();
+        setUpGameObjects();
+        setUpControls();
+
     }
 
 
@@ -94,7 +143,6 @@ public class GameStage extends Stage implements ContactListener {
     }
 
 
-
     private void setUpCamera() {
         camera = new OrthographicCamera();
         camera.position.set(0, 0, 0);
@@ -131,21 +179,28 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
+        if (!running) {
+            return super.touchDown(x, y, pointer, button);
+        }
         screenToWorld(x, y);
         touchDown.set(x, y);
-
         return super.touchDown(x, y, pointer, button);
     }
 
     @Override
     public boolean touchUp(int x, int y, int pointer, int button) {
+        if (!running) {
+            return super.touchUp(x, y, pointer, button);
+        }
         square.stop();
-
         return super.touchUp(x, y, pointer, button);
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+        if (!running) {
+            return super.touchDragged(screenX, screenY, pointer);
+        }
         actual = new Vector2(screenX, screenY);
         Vector2 tmp;
 

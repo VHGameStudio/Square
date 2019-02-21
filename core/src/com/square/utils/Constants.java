@@ -29,4 +29,7 @@ public class Constants {
     public static final float WORLD_TO_SCREEN = 36;
     public static final float DEFAULT_SCREEN_WIDTH = 1080;
 
+    public static final String PLAY_REGION_NAME = "play";
+    public static final String SPRITES_ATLAS_PATH = "skins/buttons.txt";
+
 }
