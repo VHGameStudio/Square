@@ -1,19 +1,33 @@
 buttons.png
-size: 56, 36
+size: 884, 475
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-pause
+music_off
   rotate: false
-  xy: 1, 1
-  size: 30, 34
-  orig: 50, 50
-  offset: 10, 9
+  xy: 605, 1
+  size: 261, 253
+  orig: 300, 300
+  offset: 0, 25
+  index: -1
+music_on
+  rotate: false
+  xy: 605, 256
+  size: 278, 218
+  orig: 300, 300
+  offset: 0, 38
   index: -1
 play
   rotate: false
-  xy: 33, 1
-  size: 22, 34
-  orig: 50, 50
-  offset: 14, 8
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+settings
+  rotate: false
+  xy: 303, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
   index: -1

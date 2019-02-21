@@ -11,7 +11,7 @@ public class AssetsManager {
     }
 
     public static void loadAssets() {
-        textureAtlas = new TextureAtlas(Constants.SPRITES_ATLAS_PATH);
+        textureAtlas = new TextureAtlas(Resources.SPRITES_ATLAS_PATH);
     }
 
     public static TextureAtlas getTextureAtlas() {

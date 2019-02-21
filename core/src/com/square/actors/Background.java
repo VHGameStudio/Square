@@ -5,13 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import static com.square.utils.Resources.BACKGROUND;
+
 
 public class Background extends Actor {
     private Texture texture;
 
-    public Background() {
-        texture = new Texture(BACKGROUND);
+    public Background(String texture_name) {
+        texture = new Texture(texture_name);
     }
 
     @Override
