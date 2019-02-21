@@ -172,7 +172,6 @@ public class GameStage extends Stage implements ContactListener {
         setUpControls();
     }
 
-
     @Override
     public void beginContact(Contact contact) {
 
