@@ -1,24 +1,25 @@
 package com.square.actors.menu;
 
+
 import com.badlogic.gdx.math.Rectangle;
 import com.square.utils.Resources;
 
-public class PlayButton extends GameButton {
+public class SettingsButton extends GameButton {
 
-    public interface PlayButtonListener {
-        public void onPlay();
+    public interface SettingsButtonListener {
+        public void onSettings();
     }
 
-    private PlayButtonListener listener;
+    private SettingsButtonListener listener;
 
-    public PlayButton(Rectangle bounds, PlayButtonListener listener) {
+    public SettingsButton(Rectangle bounds, SettingsButtonListener listener) {
         super(bounds);
         this.listener = listener;
     }
 
     @Override
     protected String getRegionName() {
-        return Resources.PLAY_REGION_NAME;
+        return Resources.SETTINGS_REGION_NAME;
     }
 
     @Override
@@ -28,7 +29,7 @@ public class PlayButton extends GameButton {
 
     @Override
     public void touched() {
-        listener.onPlay();
+        listener.onSettings();
     }
 
 

@@ -30,8 +30,12 @@ public class Constants {
 
     public static final float WORLD_TO_SCREEN = 36;
     public static final float DEFAULT_SCREEN_WIDTH = 1080;
+    public static final float DEFAULT_SCREEN_HEIGHT = 2160;
 
-    public static final String PLAY_REGION_NAME = "play";
-    public static final String SPRITES_ATLAS_PATH = "skins/buttons.txt";
+    public static final float BUTTON_DELTA = 400;
+    public static final float BUTTON_WIDTH = 200;
+    public static final float BUTTON_HEIGHT = 200;
+    public static final float BUTTON_Y = 50;
+
 
 }
