@@ -18,13 +18,15 @@ public class Constants {
     public static final float SQUARE_WIDTH = 2f;
     public static final float SQUARE_HEIGHT = 2f;
     public static float SQUARE_DENSITY = 0.5f;
-
     public static final float SQUARE_VELOCITY = 10;
     public static final Vector2 SQUARE_ZERO_VELOCITY = new Vector2(0, 0);
     public static final Vector2 SQUARE_UPWARD_VELOCITY = new Vector2(0, SQUARE_VELOCITY);
     public static final Vector2 SQUARE_DOWNWARD_VELOCITY = new Vector2(0, -SQUARE_VELOCITY);
     public static final Vector2 SQUARE_LEFTWARD_VELOCITY = new Vector2(-SQUARE_VELOCITY, 0);
     public static final Vector2 SQUARE_RIGHTWARD_VELOCITY = new Vector2(SQUARE_VELOCITY, 0);
+
+    public static final float CIRCLE_RADIUS = 1;
+    public static final float CIRCLE_VELOCITY = 15;
 
     public static final float WORLD_TO_SCREEN = 36;
     public static final float DEFAULT_SCREEN_WIDTH = 1080;

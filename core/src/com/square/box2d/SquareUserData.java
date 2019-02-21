@@ -4,11 +4,6 @@ import com.square.enums.UserDataType;
 
 public class SquareUserData extends UserData {
 
-    public SquareUserData() {
-        super();
-        userDataType = UserDataType.SQUARE;
-    }
-
     public SquareUserData(float width, float height) {
         super(width, height);
         userDataType = UserDataType.SQUARE;

@@ -7,15 +7,24 @@ public abstract class UserData {
     protected UserDataType userDataType;
     protected float width;
     protected float height;
-
-
-    public UserData() {
-
-    }
+    protected float radius;
 
     public UserData(float width, float height) {
         this.width = width;
         this.height = height;
+    }
+
+    public UserData(float radius) {
+        this.radius = radius;
+        this.width = this.height = radius * 2;
+    }
+
+    public float getRadius() {
+        return radius;
+    }
+
+    public void setRadius(float radius) {
+        this.radius = radius;
     }
 
     public float getWidth() {
