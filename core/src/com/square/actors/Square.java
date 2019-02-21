@@ -45,6 +45,15 @@ public class Square extends GameActor {
         return (SquareUserData) userData;
     }
 
+   /* public void joystickController(Vector2 actual, Vector2 touchDown) {
+
+    }
+
+    public void instanceController(Vector2 actual, Vector2 touchDown) {
+
+    }
+*/
+   //TODO: add two types of controllers
     public void move(Vector2 actual, Vector2 touchDown) {
         float newX = (actual.x - touchDown.x);
         float newY = (actual.y - touchDown.y);

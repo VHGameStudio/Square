@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.square.actors.Background;
+import com.square.actors.Circle;
 import com.square.actors.Wall;
 import com.square.actors.Square;
 import com.square.utils.WorldUtils;
@@ -51,6 +52,7 @@ public class GameStage extends Stage implements ContactListener {
         world.setContactListener(this);
         setUpBackground();
         setUpWall();
+        //setUpCircle();
         setUpSquare();
     }
 
@@ -88,12 +90,19 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
+    private void setUpCircle() {
+        //TODO: a lot of things for circles...
+        addActor(new Circle(WorldUtils.createCircle(world), camera));
+    }
+
     private void setUpSquare() {
         square = new Square(WorldUtils.createSquare(world), camera);
         addActor(square);
     }
 
-
+    private void setUpBackground() {
+        addActor(new Background());
+    }
 
     private void setUpCamera() {
         camera = new OrthographicCamera();
@@ -119,14 +128,10 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     //TODO: comment this after we put the textures on
-/*    @Override
+    @Override
     public void draw() {
         super.draw();
         renderer.render(world, camera.combined);
-    }*/
-
-    private void setUpBackground() {
-        addActor(new Background());
     }
 
     @Override
