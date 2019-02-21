@@ -166,6 +166,7 @@ public class GameStage extends Stage implements ContactListener {
         soundButton = new SoundButton(soundButtonBounds, new GameSoundButtonListener());
         addActor(soundButton);
     }
+
     private void setUpStageBase() {
         setUpWorld();
         setUpGameObjects();
