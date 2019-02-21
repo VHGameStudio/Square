@@ -18,6 +18,7 @@ import com.square.actors.Circle;
 import com.square.actors.Wall;
 import com.square.actors.Square;
 import com.square.actors.menu.PlayButton;
+import com.square.enums.GameState;
 import com.square.utils.WorldUtils;
 
 import static com.square.utils.Constants.NEW_COORDINATE_PLANE_DELTA;
@@ -28,8 +29,7 @@ public class GameStage extends Stage implements ContactListener {
     private Wall wall;
     private Square square;
 
-    //TODO: add GameStates
-    private boolean running = false;
+    private GameState gameState;
 
     private PlayButton playButton;
 
@@ -46,6 +46,7 @@ public class GameStage extends Stage implements ContactListener {
     private Vector2 previous;
 
     public GameStage() {
+        gameState = GameState.MENU;
         setUpCamera();
         setUpWorld();
         setUpMainMenu();
@@ -77,7 +78,7 @@ public class GameStage extends Stage implements ContactListener {
         public void onStart() {
             clear();
             setUpStageBase();
-            running = true;
+            gameState = GameState.RUNNING;
         }
     }
 
@@ -101,7 +102,6 @@ public class GameStage extends Stage implements ContactListener {
         setUpWorld();
         setUpGameObjects();
         setUpControls();
-
     }
 
 
@@ -184,44 +184,40 @@ public class GameStage extends Stage implements ContactListener {
 
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
-        if (!running) {
-            return super.touchDown(x, y, pointer, button);
+        if (GameState.RUNNING == gameState) {
+            screenToWorld(x, y);
+            touchDown.set(x, y);
         }
-        screenToWorld(x, y);
-        touchDown.set(x, y);
-
         return super.touchDown(x, y, pointer, button);
     }
 
     @Override
     public boolean touchUp(int x, int y, int pointer, int button) {
-        if (!running) {
-            return super.touchUp(x, y, pointer, button);
+        if (GameState.RUNNING == gameState) {
+            square.stop();
         }
-        square.stop();
         return super.touchUp(x, y, pointer, button);
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        if (!running) {
-            return super.touchDragged(screenX, screenY, pointer);
-        }
-        actual = new Vector2(screenX, screenY);
-        Vector2 tmp;
+        if (GameState.RUNNING == gameState) {
+            actual = new Vector2(screenX, screenY);
+            Vector2 tmp;
 
-        if (previous != null) {
-            tmp = new Vector2(
-                    actual.x - previous.x,
-                    actual.y - previous.y);
+            if (previous != null) {
+                tmp = new Vector2(
+                        actual.x - previous.x,
+                        actual.y - previous.y);
 
-            if (tmp.len() < NEW_COORDINATE_PLANE_DELTA) {
-                touchDown = previous;
+                if (tmp.len() < NEW_COORDINATE_PLANE_DELTA) {
+                    touchDown = previous;
+                }
             }
-        }
 
-        square.move(actual, touchDown);
-        previous = actual;
+            square.move(actual, touchDown);
+            previous = actual;
+        }
 
         return super.touchDragged(screenX, screenY, pointer);
     }
