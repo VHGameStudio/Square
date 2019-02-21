@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.square.actors.Background;
+import com.square.actors.Border;
 import com.square.actors.Circle;
 import com.square.actors.Wall;
 import com.square.actors.Square;
@@ -21,6 +22,8 @@ import com.square.actors.menu.PlayButton;
 import com.square.enums.GameState;
 import com.square.utils.WorldUtils;
 
+import static com.square.utils.Constants.BORDER_HEIGTH;
+import static com.square.utils.Constants.BORDER_WIDTH;
 import static com.square.utils.Constants.NEW_COORDINATE_PLANE_DELTA;
 
 public class GameStage extends Stage implements ContactListener {
@@ -54,6 +57,15 @@ public class GameStage extends Stage implements ContactListener {
         renderer = new Box2DDebugRenderer();
     }
 
+    private class GamePlayButtonListener implements PlayButton.PlayButtonListener {
+
+        @Override
+        public void onStart() {
+            clear();
+            setUpStageBase();
+            gameState = GameState.RUNNING;
+        }
+    }
 
     private void setUpWorld() {
         world = WorldUtils.createWorld();
@@ -63,23 +75,14 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setUpGameObjects() {
         setUpWall();
-        //setUpCircle();
+        setUpBorder();
+        setUpCircle();
         setUpSquare();
     }
 
     private void setUpControls() {
         touchPoint = new Vector3();
         touchDown = new Vector2();
-    }
-
-    private class GamePlayButtonListener implements PlayButton.PlayButtonListener {
-
-        @Override
-        public void onStart() {
-            clear();
-            setUpStageBase();
-            gameState = GameState.RUNNING;
-        }
     }
 
     private void setUpMainMenu() {
@@ -130,6 +133,25 @@ public class GameStage extends Stage implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
+    }
+
+    private void setUpBorder() {
+        addActor(new Border(WorldUtils.createBorder(
+                world,
+                new Vector2(0 - BORDER_WIDTH / 2, 0 - BORDER_HEIGTH / 2),
+                new Vector2(BORDER_WIDTH / 2, 0 - BORDER_HEIGTH / 2)), camera));
+        addActor(new Border(WorldUtils.createBorder(
+                world,
+                new Vector2(0 - BORDER_WIDTH / 2, BORDER_HEIGTH / 2),
+                new Vector2(BORDER_WIDTH / 2, BORDER_HEIGTH / 2)), camera));
+        addActor(new Border(WorldUtils.createBorder(
+                world,
+                new Vector2(0 - BORDER_WIDTH / 2, 0 - BORDER_HEIGTH / 2),
+                new Vector2(0 - BORDER_WIDTH / 2, BORDER_HEIGTH / 2)), camera));
+        addActor(new Border(WorldUtils.createBorder(
+                world,
+                new Vector2(BORDER_WIDTH / 2, 0 - BORDER_HEIGTH / 2),
+                new Vector2(BORDER_WIDTH / 2, BORDER_HEIGTH / 2)), camera));
     }
 
     private void setUpWall() {

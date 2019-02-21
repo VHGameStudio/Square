@@ -1,5 +1,6 @@
 package com.square.box2d;
 
+import com.badlogic.gdx.math.Vector2;
 import com.square.enums.UserDataType;
 
 public abstract class UserData {
@@ -8,6 +9,8 @@ public abstract class UserData {
     protected float width;
     protected float height;
     protected float radius;
+    protected Vector2 x;
+    protected Vector2 y;
 
     public UserData(float width, float height) {
         this.width = width;
@@ -17,6 +20,12 @@ public abstract class UserData {
     public UserData(float radius) {
         this.radius = radius;
         this.width = this.height = radius * 2;
+    }
+
+    public UserData(Vector2 x, Vector2 y) {
+        this.x = x;
+        this.y = y;
+        //todo ?
     }
 
     public float getRadius() {

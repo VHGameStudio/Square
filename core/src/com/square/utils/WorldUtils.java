@@ -4,16 +4,21 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.square.box2d.BorderUserData;
 import com.square.box2d.CircleUserData;
 import com.square.box2d.WallUserData;
 import com.square.box2d.SquareUserData;
 
 import java.util.Random;
 
+import static com.square.utils.Constants.BORDER_DENSITY;
+import static com.square.utils.Constants.CIRCLE_DENSITY;
 import static com.square.utils.Constants.CIRCLE_RADIUS;
 import static com.square.utils.Constants.SQUARE_DENSITY;
+import static com.square.utils.Constants.WALL_DENSITY;
 
 public class WorldUtils {
 
@@ -35,7 +40,7 @@ public class WorldUtils {
         Body body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(w / 2, h / 2);
-        body.createFixture(shape, 0);
+        body.createFixture(shape, WALL_DENSITY);
         body.setUserData(new WallUserData(w, h));
         shape.dispose();
 
@@ -56,7 +61,7 @@ public class WorldUtils {
         shape.setRadius(CIRCLE_RADIUS);
         Body body = world.createBody(bodyDef);
         body.setUserData(new CircleUserData(CIRCLE_RADIUS));
-        body.createFixture(shape, SQUARE_DENSITY);
+        body.createFixture(shape, CIRCLE_DENSITY);
         shape.dispose();
 
         return body;
@@ -72,6 +77,20 @@ public class WorldUtils {
         Body body = world.createBody(bodyDef);
         body.setUserData(new SquareUserData(Constants.SQUARE_WIDTH, Constants.SQUARE_HEIGHT));
         body.createFixture(shape, SQUARE_DENSITY);
+        shape.dispose();
+
+        return body;
+    }
+
+    public static Body createBorder(World world, Vector2 x, Vector2 y) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.fixedRotation = true;
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        EdgeShape shape = new EdgeShape();
+        shape.set(x, y);
+        Body body = world.createBody(bodyDef);
+        body.setUserData(new BorderUserData(x, y));
+        body.createFixture(shape, BORDER_DENSITY);
         shape.dispose();
 
         return body;

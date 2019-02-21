@@ -13,6 +13,8 @@ public class Constants {
 
     public static final float VIEWPORT_WIDTH = 30;
 
+    public static float WALL_DENSITY = 0f;
+
     public static final float SQUARE_X = 0;
     public static final float SQUARE_Y = 0;
     public static final float SQUARE_WIDTH = 2f;
@@ -26,7 +28,12 @@ public class Constants {
     public static final Vector2 SQUARE_RIGHTWARD_VELOCITY = new Vector2(SQUARE_VELOCITY, 0);
 
     public static final float CIRCLE_RADIUS = 1;
+    public static float CIRCLE_DENSITY = 0.5f;
     public static final float CIRCLE_VELOCITY = 15;
+
+    public static final float BORDER_DENSITY = 0f;
+    public static final float BORDER_WIDTH = 60;
+    public static final float BORDER_HEIGTH = 80;
 
     public static final float WORLD_TO_SCREEN = 36;
     public static final float DEFAULT_SCREEN_WIDTH = 1080;

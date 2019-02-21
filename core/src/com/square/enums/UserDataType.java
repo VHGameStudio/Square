@@ -4,6 +4,7 @@ public enum UserDataType {
 
     WALL,
     SQUARE,
-    CIRCLE
+    CIRCLE,
+    BORDER
 
 }
