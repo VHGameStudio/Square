@@ -3,6 +3,8 @@ package com.square.box2d;
 import com.badlogic.gdx.math.Vector2;
 import com.square.enums.UserDataType;
 
+import static java.lang.Math.abs;
+
 public abstract class UserData {
 
     protected UserDataType userDataType;
@@ -11,6 +13,10 @@ public abstract class UserData {
     protected float radius;
     protected Vector2 x;
     protected Vector2 y;
+
+    public UserData() {
+
+    }
 
     public UserData(float width, float height) {
         this.width = width;
@@ -25,7 +31,8 @@ public abstract class UserData {
     public UserData(Vector2 x, Vector2 y) {
         this.x = x;
         this.y = y;
-        //todo ?
+        width = (x.x == y.x) ? (1) : (abs(x.x - y.x));
+        height = (x.y == y.y) ? (1) : (abs(x.y - y.y));
     }
 
     public float getRadius() {

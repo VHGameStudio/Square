@@ -33,20 +33,16 @@ public abstract class GameActor extends Actor {
     public void act(float delta) {
         super.act(delta);
 
-        //TODO smth about it
-        //updateRectangle executes for Wall, too
-        // but they are static and the positions are always the same
         if (body.getUserData() != null) {
             updateRectangle();
         } else {
             remove();
         }
-
     }
 
     private void updateRectangle() {
         //worldToScreen works for height and width but doesn't work for x and y
-        //so I want this way
+        //so I went this way
         coordinates.x = body.getPosition().x - userData.getWidth() / 2;
         coordinates.y = body.getPosition().y - userData.getHeight() / 2;
 
@@ -58,7 +54,7 @@ public abstract class GameActor extends Actor {
         screenRectangle.height = worldToScreen(userData.getHeight());
     }
 
-    protected float worldToScreen(float n) {
+    public static float worldToScreen(float n) {
         float coef = WORLD_TO_SCREEN * Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
         return n * coef;
     }

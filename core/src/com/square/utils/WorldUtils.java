@@ -89,7 +89,7 @@ public class WorldUtils {
         EdgeShape shape = new EdgeShape();
         shape.set(x, y);
         Body body = world.createBody(bodyDef);
-        body.setUserData(new BorderUserData(x, y));
+        body.setUserData(new BorderUserData());
         body.createFixture(shape, BORDER_DENSITY);
         shape.dispose();
 
