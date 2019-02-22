@@ -14,4 +14,9 @@ public class GameRun extends Game {
         AssetsManager.loadAssets();
         setScreen(new MenuScreen(this));
     }
+
+    @Override
+    public void dispose() {
+        screen = null;
+    }
 }

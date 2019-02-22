@@ -47,6 +47,7 @@ public class MenuStage extends Stage {
             clear();
             //gameState = GameState.RUNNING;
             //setUpStageBase();
+            game.dispose();
             game.setScreen(new GameScreen(game));
         }
     }
