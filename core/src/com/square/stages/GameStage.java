@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.square.actors.Background;
 import com.square.actors.Border;
 import com.square.actors.Circle;
+import com.square.actors.MapBackground;
 import com.square.actors.Wall;
 import com.square.actors.Square;
 import com.square.actors.menu.PlayButton;
@@ -33,10 +34,10 @@ import static com.square.utils.Constants.BUTTON_WIDTH;
 import static com.square.utils.Constants.BUTTON_Y;
 import static com.square.utils.Constants.DEFAULT_SCREEN_HEIGHT;
 import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
-import static com.square.utils.Resources.BACKGROUND;
 import static com.square.utils.Resources.BACKGROUND_MENU;
 
 import static com.square.utils.Constants.NEW_COORDINATE_PLANE_DELTA;
+import static com.square.utils.Resources.MAP_BACKGROUND;
 import static com.square.utils.Resources.OUTER_MAP_BACKGROUND;
 
 public class GameStage extends Stage implements ContactListener {
@@ -83,6 +84,7 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpGameObjects() {
+        setUpMapBackground();
         setUpBorder();
         setUpWall();
         setUpCircle();
@@ -158,7 +160,7 @@ public class GameStage extends Stage implements ContactListener {
 
         Rectangle soundButtonBounds = new Rectangle(pos_x,
                 pos_y, width, height);
-        soundButton = new SoundButton(soundButtonBounds, new GameSoundButtonListener());
+        soundButton = new SoundButton(soundButtonBounds);
         addActor(soundButton);
     }
 
@@ -245,7 +247,7 @@ public class GameStage extends Stage implements ContactListener {
             background = new Background(BACKGROUND_MENU);
         }
         if (gameState == GameState.RUNNING) {
-            background = new Background(BACKGROUND);
+            background = new Background(OUTER_MAP_BACKGROUND);
         }
 
         addActor(background);
