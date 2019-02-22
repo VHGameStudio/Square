@@ -24,6 +24,7 @@ import com.square.actors.menu.PlayButton;
 import com.square.actors.menu.SettingsButton;
 import com.square.actors.menu.SoundButton;
 import com.square.enums.GameState;
+import com.square.utils.BodyUtils;
 import com.square.utils.WorldUtils;
 
 import static com.square.utils.Constants.BORDER_HEIGTH;
@@ -178,6 +179,13 @@ public class GameStage extends Stage implements ContactListener {
 
 /*        if ((BodyUtils.bodyIsSquare(a) && BodyUtils.bodyIsWall(b)) ||
                 (BodyUtils.bodyIsWall(a) && BodyUtils.bodyIsSquare(b))) {
+            if (BodyUtils.bodyIsWall(a)) {
+              //  a.setUserData(null);
+                world.destroyBody(a);
+
+            } else {
+             //   b.setUserData(null);
+            }
         }*/
 
     }

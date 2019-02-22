@@ -1,0 +1,1 @@
+1. The square from the menu background must be the same size and position as the one from game procces.
