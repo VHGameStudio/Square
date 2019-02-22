@@ -91,7 +91,7 @@ public class GameStage extends Stage implements ContactListener {
                 (BodyUtils.bodyIsWall(a) && BodyUtils.bodyIsSquare(b))) {
             if (BodyUtils.bodyIsWall(a)) {
               //  a.setUserData(null);
-                world.destroyBody(a);
+              //  world.destroyBody(a);
 
             } else {
              //   b.setUserData(null);
