@@ -17,7 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.square.actors.Background;
 import com.square.actors.Border;
 import com.square.actors.Circle;
-import com.square.actors.MapBackground;
 import com.square.actors.Wall;
 import com.square.actors.Square;
 import com.square.actors.menu.PlayButton;
@@ -34,7 +33,7 @@ import static com.square.utils.Constants.BUTTON_WIDTH;
 import static com.square.utils.Constants.BUTTON_Y;
 import static com.square.utils.Constants.DEFAULT_SCREEN_HEIGHT;
 import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
-import static com.square.utils.Resources.MAP_BACKGROUND;
+import static com.square.utils.Resources.BACKGROUND;
 import static com.square.utils.Resources.BACKGROUND_MENU;
 
 import static com.square.utils.Constants.NEW_COORDINATE_PLANE_DELTA;
@@ -84,7 +83,6 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpGameObjects() {
-        setUpMapBackground();
         setUpBorder();
         setUpWall();
         setUpCircle();
@@ -115,13 +113,6 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
-    private class GameSoundButtonListener implements SoundButton.SoundButtonListener {
-
-        @Override
-        public void onSound() {
-
-        }
-    }
 
     private void setUpMainMenu() {
         setUpPlay();
@@ -160,7 +151,7 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpSound() {
         float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
         float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
-        float pos_x = playButton.getX() + BUTTON_DELTA * coef_x;
+        float pos_x = playButton.getX()+BUTTON_DELTA*coef_x;
         float pos_y = (BUTTON_Y * coef_y);
         float width = BUTTON_WIDTH * coef_y;
         float height = BUTTON_HEIGHT * coef_y;
@@ -253,9 +244,8 @@ public class GameStage extends Stage implements ContactListener {
         if (gameState == GameState.MENU) {
             background = new Background(BACKGROUND_MENU);
         }
-
         if (gameState == GameState.RUNNING) {
-            background = new Background(OUTER_MAP_BACKGROUND);
+            background = new Background(BACKGROUND);
         }
 
         addActor(background);
