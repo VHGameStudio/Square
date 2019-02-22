@@ -7,7 +7,7 @@ public class Resources {
     public static final String BACKGROUND_MENU = "background_menu_en.png";
     //public static final String LOGO = "logo.png";
     public static final String SQUARE_BLUE = "blue-square.png";
-    public static final String TEST_WALL = "test-wall.jpeg";
+    public static final String WALL_STATIC = "wall_brown.png";
     public static final String BORDER_BLACK = "border-black.png";
     public static final String CIRCLE_ORANGE = "orange-circle.png";
     public static final String SPRITES_ATLAS_PATH = "skins/buttons.txt";

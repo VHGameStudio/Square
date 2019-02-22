@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.square.box2d.WallUserData;
 
-import static com.square.utils.Resources.TEST_WALL;
+import static com.square.utils.Resources.WALL_STATIC;
 
 public class Wall extends GameActor {
 
@@ -14,7 +14,7 @@ public class Wall extends GameActor {
         super(body);
         this.camera = camera;
 
-        texture = new Texture(TEST_WALL);
+        texture = new Texture(WALL_STATIC);
     }
 
     @Override
