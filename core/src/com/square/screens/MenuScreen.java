@@ -4,16 +4,16 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.square.stages.GameStage;
+import com.square.stages.MenuStage;
 
 import static com.square.utils.Constants.VIEWPORT_WIDTH;
 
-public class GameScreen implements Screen {
+public class MenuScreen implements Screen {
+    private MenuStage stage;
+    //private Game game;
 
-    private GameStage stage;
-
-    public GameScreen(Game game) {
-        stage = new GameStage(game);
+    public MenuScreen(Game game) {
+        stage = new MenuStage(game);
     }
 
     @Override
