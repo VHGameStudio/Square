@@ -39,10 +39,17 @@ public class Constants {
     public static final float DEFAULT_SCREEN_WIDTH = 1080;
     public static final float DEFAULT_SCREEN_HEIGHT = 2160;
 
-    public static final float BUTTON_DELTA = 400;
-    public static final float BUTTON_WIDTH = 200;
-    public static final float BUTTON_HEIGHT = 200;
-    public static final float BUTTON_Y = 50;
+    public static final float MENU_BUTTON_DELTA = 400;
+    public static final float MENU_BUTTON_WIDTH = 200;
+    public static final float MENU_BUTTON_HEIGHT = 200;
+    public static final float MENU_BUTTON_Y = 50;
+
+    public static final float GAME_BUTTON_DELTA = 400;
+    public static final float GAME_BUTTON_WIDTH = 100;
+    public static final float GAME_BUTTON_HEIGHT = 100;
+    public static final float GAME_BUTTON_Y = 50;
+
+
 
 
 }

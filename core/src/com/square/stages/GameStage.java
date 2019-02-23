@@ -3,6 +3,7 @@ package com.square.stages;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -19,13 +20,21 @@ import com.square.actors.Circle;
 import com.square.actors.MapBackground;
 import com.square.actors.Wall;
 import com.square.actors.Square;
-import com.square.enums.GameState;
+import com.square.actors.menu.GameButton;
+import com.square.actors.menu.PauseButton;
+import com.square.screens.MenuScreen;
 import com.square.utils.BodyUtils;
 import com.square.utils.WorldUtils;
 
 import static com.square.utils.Constants.BORDER_HEIGTH;
 import static com.square.utils.Constants.BORDER_WIDTH;
 
+import static com.square.utils.Constants.GAME_BUTTON_HEIGHT;
+import static com.square.utils.Constants.GAME_BUTTON_WIDTH;
+import static com.square.utils.Constants.MENU_BUTTON_HEIGHT;
+import static com.square.utils.Constants.MENU_BUTTON_WIDTH;
+import static com.square.utils.Constants.DEFAULT_SCREEN_HEIGHT;
+import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
 import static com.square.utils.Constants.NEW_COORDINATE_PLANE_DELTA;
 import static com.square.utils.Resources.MAP_BACKGROUND;
 import static com.square.utils.Resources.OUTER_MAP_BACKGROUND;
@@ -37,6 +46,8 @@ public class GameStage extends Stage implements ContactListener {
     private Wall wall;
     private Square square;
     private MapBackground mapBackground;
+
+    private PauseButton pauseButton;
 
     private final float TIME_STEP = 1 / 300f;
     private float accumulator = 0f;
@@ -58,6 +69,7 @@ public class GameStage extends Stage implements ContactListener {
         setUpControls();
         setUpBackground();
         setUpGameObjects();
+        setUpGameButtons();
         Gdx.input.setInputProcessor(this);
         renderer = new Box2DDebugRenderer();
     }
@@ -79,6 +91,10 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpControls() {
         touchPoint = new Vector3();
         touchDown = new Vector2();
+    }
+
+    private void setUpGameButtons() {
+        setUpPause();
     }
 
     @Override
@@ -160,6 +176,7 @@ public class GameStage extends Stage implements ContactListener {
         camera.update();
     }
 
+
     @Override
     public OrthographicCamera getCamera() {
         return camera;
@@ -224,4 +241,27 @@ public class GameStage extends Stage implements ContactListener {
     private void screenToWorld(int x, int y) {
         getCamera().unproject(touchPoint.set(x, y, 0));
     }
+
+    private void setUpPause() {
+        float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
+        float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
+        float pos_x = 0;
+        float width = GAME_BUTTON_WIDTH * coef_y;
+        float height = GAME_BUTTON_HEIGHT * coef_y;
+        float pos_y = (Gdx.graphics.getHeight() - height);
+
+        Rectangle pauseButtonBounds = new Rectangle(pos_x, pos_y, width, height);
+        pauseButton = new PauseButton(pauseButtonBounds, new GamePauseButtonListener());
+        addActor(pauseButton);
+    }
+
+    private class GamePauseButtonListener implements PauseButton.PauseButtonListener {
+        @Override
+        public void onPause() {
+            clear();
+            game.dispose();
+            game.setScreen(new MenuScreen(game));
+        }
+    }
 }
+
