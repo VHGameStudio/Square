@@ -245,10 +245,10 @@ public class GameStage extends Stage implements ContactListener {
     private void setUpPause() {
         float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
         float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
-        float pos_x = 0;
+        float pos_x = 50;
         float width = GAME_BUTTON_WIDTH * coef_y;
         float height = GAME_BUTTON_HEIGHT * coef_y;
-        float pos_y = (Gdx.graphics.getHeight() - height);
+        float pos_y = (Gdx.graphics.getHeight() - height - 50);
 
         Rectangle pauseButtonBounds = new Rectangle(pos_x, pos_y, width, height);
         pauseButton = new PauseButton(pauseButtonBounds, new GamePauseButtonListener());

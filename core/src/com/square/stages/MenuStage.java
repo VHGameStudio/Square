@@ -11,12 +11,12 @@ import com.square.actors.menu.SettingsButton;
 import com.square.actors.menu.SoundButton;
 import com.square.screens.GameScreen;
 
+import static com.square.utils.Constants.DEFAULT_SCREEN_HEIGHT;
+import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
 import static com.square.utils.Constants.MENU_BUTTON_DELTA;
 import static com.square.utils.Constants.MENU_BUTTON_HEIGHT;
 import static com.square.utils.Constants.MENU_BUTTON_WIDTH;
 import static com.square.utils.Constants.MENU_BUTTON_Y;
-import static com.square.utils.Constants.DEFAULT_SCREEN_HEIGHT;
-import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
 import static com.square.utils.Resources.BACKGROUND_MENU;
 
 public class MenuStage extends Stage {
