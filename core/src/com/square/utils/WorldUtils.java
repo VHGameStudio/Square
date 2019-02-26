@@ -7,8 +7,10 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.square.actors.DynamicBackground;
 import com.square.box2d.BorderUserData;
 import com.square.box2d.CircleUserData;
+import com.square.box2d.DynamicBackgroundUserData;
 import com.square.box2d.WallUserData;
 import com.square.box2d.SquareUserData;
 
@@ -36,6 +38,7 @@ public class WorldUtils {
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.fixedRotation = true;
+        bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set(new Vector2(x, y));
         Body body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
@@ -91,6 +94,28 @@ public class WorldUtils {
         Body body = world.createBody(bodyDef);
         body.setUserData(new BorderUserData());
         body.createFixture(shape, BORDER_DENSITY);
+        shape.dispose();
+
+        return body;
+    }
+
+    public static Body createBackgroundRect(World world) {
+        Random rnd = new Random(System.currentTimeMillis());
+
+        float w = 2 + rnd.nextInt(10 - 2 + 1);
+        float h = 2 + rnd.nextInt(10 - 2 + 1);
+        float x = -20 + rnd.nextInt(20 - (-20) + 1);
+        float y = -20 + rnd.nextInt(20 - (-20) + 1);
+
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.fixedRotation = true;
+        bodyDef.position.set(new Vector2(x, y));
+        Body body = world.createBody(bodyDef);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(w / 2, h / 2);
+        body.createFixture(shape, 0f);
+        body.setUserData(new DynamicBackgroundUserData(w, h));
         shape.dispose();
 
         return body;

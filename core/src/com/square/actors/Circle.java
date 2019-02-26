@@ -25,9 +25,6 @@ public class Circle extends GameActor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-/*        camera.position.x = body.getPosition().x;
-        camera.position.y = body.getPosition().y;
-        camera.update();*/
 
         batch.draw(
                 texture,
