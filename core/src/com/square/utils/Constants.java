@@ -50,6 +50,6 @@ public class Constants {
     public static final float GAME_BUTTON_Y = 50;
 
 
-
+    public static final int SIMPLE_COLOR_NUM = 21;
 
 }

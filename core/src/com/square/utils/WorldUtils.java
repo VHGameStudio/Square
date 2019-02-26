@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.square.actors.DynamicBackground;
 import com.square.box2d.BorderUserData;
 import com.square.box2d.CircleUserData;
 import com.square.box2d.DynamicBackgroundUserData;
