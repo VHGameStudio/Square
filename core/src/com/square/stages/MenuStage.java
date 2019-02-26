@@ -85,7 +85,7 @@ public class MenuStage extends Stage {
                 camera.viewportHeight / devisor1), camera, 19));
 
         // A background strip for name label
-        int devisor2 = 4;
+        int devisor2 = 5;
         addActor(new DynamicBackground(WorldUtils.createBackRect(
                 world,
                 new Vector2(0, camera.viewportHeight / 7),
