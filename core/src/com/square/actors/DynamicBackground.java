@@ -1,25 +1,16 @@
 package com.square.actors;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.square.box2d.CircleUserData;
+import com.square.box2d.DynamicBackgroundUserData;
 
-import static com.square.utils.Resources.CIRCLE_ORANGE;
+public class DynamicBackground extends GameActor {
 
-public class Circle extends GameActor {
-
-    public Circle(Body body, OrthographicCamera camera) {
+    public DynamicBackground(Body body, OrthographicCamera camera) {
         super(body);
         this.camera = camera;
 
-        texture = new Texture(CIRCLE_ORANGE);
-    }
-
-    @Override
-    public CircleUserData getUserData() {
-        return (CircleUserData) userData;
     }
 
     @Override
@@ -32,6 +23,11 @@ public class Circle extends GameActor {
                 screenRectangle.y,
                 screenRectangle.width,
                 screenRectangle.height);
+    }
+
+    @Override
+    public DynamicBackgroundUserData getUserData() {
+        return (DynamicBackgroundUserData) userData;
     }
 
 }

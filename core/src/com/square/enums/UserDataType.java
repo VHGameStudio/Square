@@ -5,6 +5,7 @@ public enum UserDataType {
     WALL,
     SQUARE,
     CIRCLE,
-    BORDER
+    BORDER,
+    BG_PART //Background square
 
 }

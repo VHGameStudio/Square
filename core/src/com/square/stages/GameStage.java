@@ -195,12 +195,14 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     //TODO: comment this after we put the textures on
+/*
     @Override
     public void draw() {
         super.draw();
         renderer.render(world, camera.combined);
     }
 
+*/
 
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
