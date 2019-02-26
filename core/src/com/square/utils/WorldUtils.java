@@ -15,6 +15,8 @@ import com.square.box2d.SquareUserData;
 
 import java.util.Random;
 
+import jdk.nashorn.internal.runtime.WithObject;
+
 import static com.square.utils.Constants.BORDER_DENSITY;
 import static com.square.utils.Constants.CIRCLE_DENSITY;
 import static com.square.utils.Constants.CIRCLE_RADIUS;
@@ -98,13 +100,13 @@ public class WorldUtils {
         return body;
     }
 
-    public static Body createBackgroundRect(World world) {
+    public static Body createBackRect(World world) {
         Random rnd = new Random(System.currentTimeMillis());
 
-        float w = 2 + rnd.nextInt(10 - 2 + 1);
-        float h = 2 + rnd.nextInt(10 - 2 + 1);
-        float x = -20 + rnd.nextInt(20 - (-20) + 1);
-        float y = -20 + rnd.nextInt(20 - (-20) + 1);
+        float w = 2 + rnd.nextInt(30 - 2 + 1);
+        float h = 2 + rnd.nextInt(30 - 2 + 1);
+        float x = -40 + rnd.nextInt(40 - (-40) + 1);
+        float y = -40 + rnd.nextInt(40 - (-40) + 1);
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
@@ -119,4 +121,20 @@ public class WorldUtils {
 
         return body;
     }
+
+    public static Body createBackRect(World world, Vector2 start, float width, float height) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.fixedRotation = true;
+        bodyDef.position.set(start);
+        Body body = world.createBody(bodyDef);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(width / 2f, height / 2f);
+        body.createFixture(shape, 0f);
+        body.setUserData(new DynamicBackgroundUserData(width, height));
+        shape.dispose();
+
+        return body;
+    }
+
 }

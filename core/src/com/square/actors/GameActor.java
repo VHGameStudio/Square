@@ -54,9 +54,9 @@ public abstract class GameActor extends Actor {
         screenRectangle.height = worldToScreen(userData.getHeight());
     }
 
-    public static float worldToScreen(float n) {
+    public static float worldToScreen(float w) {
         float coef = WORLD_TO_SCREEN * Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
-        return n * coef;
+        return w * coef;
     }
 
     public abstract UserData getUserData();

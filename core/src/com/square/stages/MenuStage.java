@@ -4,12 +4,21 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.square.actors.Background;
+import com.square.actors.GameActor;
+import com.square.actors.menu.DynamicBackground;
 import com.square.actors.menu.PlayButton;
 import com.square.actors.menu.SettingsButton;
 import com.square.actors.menu.SoundButton;
 import com.square.screens.GameScreen;
+import com.square.utils.WorldUtils;
+
+import java.util.Random;
 
 import static com.square.utils.Constants.DEFAULT_SCREEN_HEIGHT;
 import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
@@ -17,6 +26,7 @@ import static com.square.utils.Constants.MENU_BUTTON_DELTA;
 import static com.square.utils.Constants.MENU_BUTTON_HEIGHT;
 import static com.square.utils.Constants.MENU_BUTTON_WIDTH;
 import static com.square.utils.Constants.MENU_BUTTON_Y;
+import static com.square.utils.Constants.VIEWPORT_WIDTH;
 import static com.square.utils.Resources.BACKGROUND_MENU;
 
 public class MenuStage extends Stage {
@@ -27,11 +37,12 @@ public class MenuStage extends Stage {
     private SettingsButton settingsButton;
     private SoundButton soundButton;
     private OrthographicCamera camera;
+    private World world;
 
 
     public MenuStage(Game game) {
         this.game = game;
-       // gameState = GameState.MENU;
+        setUpWorld();
         setUpCamera();
         setUpBackground();
         setUpMainMenu();
@@ -43,8 +54,6 @@ public class MenuStage extends Stage {
         @Override
         public void onPlay() {
             clear();
-            //gameState = GameState.RUNNING;
-            //setUpStageBase();
             game.dispose();
             game.setScreen(new GameScreen(game));
         }
@@ -58,8 +67,32 @@ public class MenuStage extends Stage {
         }
     }
 
+    private void setUpWorld() {
+        world = WorldUtils.createWorld();
+    }
+
     private void setUpBackground() {
-        addActor(new Background(BACKGROUND_MENU));
+        Random rnd = new Random(System.currentTimeMillis());
+        for (int i = 0; i < 80; ++i) {
+            int color = rnd.nextInt(20 + 1);
+            addActor(new DynamicBackground(WorldUtils.createBackRect(world), camera, color));
+        }
+
+        // A background strip for buttons
+        int devisor1 = 7;
+        addActor(new DynamicBackground(WorldUtils.createBackRect(
+                world,
+                new Vector2(0, 0 - camera.viewportHeight / 2 + devisor1 / 2f),
+                camera.viewportWidth,
+                camera.viewportHeight / devisor1), camera, 19));
+
+        // A background strip for name label
+        int devisor2 = 4;
+        addActor(new DynamicBackground(WorldUtils.createBackRect(
+                world,
+                new Vector2(0, camera.viewportHeight / 7),
+                camera.viewportWidth,
+                camera.viewportHeight / devisor2), camera, 19));
     }
 
     private void setUpMainMenu() {
@@ -114,6 +147,9 @@ public class MenuStage extends Stage {
     private void setUpCamera() {
         camera = new OrthographicCamera();
         camera.position.set(0, 0, 0);
+        camera.viewportWidth = VIEWPORT_WIDTH;
+        camera.viewportHeight = VIEWPORT_WIDTH * Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
+        camera.update();
         camera.update();
     }
 
