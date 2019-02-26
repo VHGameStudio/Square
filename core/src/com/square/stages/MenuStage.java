@@ -69,6 +69,7 @@ public class MenuStage extends Stage {
     }
 
     private void setUpPlay() {
+        //TODO: make implimentation for calculation buttons bounds
         float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
         float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
         float pos_x = (getCamera().position.x + Gdx.graphics.getWidth() - MENU_BUTTON_WIDTH * coef_y) / 2;
