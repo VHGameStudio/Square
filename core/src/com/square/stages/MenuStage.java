@@ -5,12 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.square.actors.Background;
-import com.square.actors.GameActor;
 import com.square.actors.menu.DynamicBackground;
 import com.square.actors.menu.PlayButton;
 import com.square.actors.menu.SettingsButton;
@@ -27,11 +23,11 @@ import static com.square.utils.Constants.MENU_BUTTON_HEIGHT;
 import static com.square.utils.Constants.MENU_BUTTON_WIDTH;
 import static com.square.utils.Constants.MENU_BUTTON_Y;
 import static com.square.utils.Constants.VIEWPORT_WIDTH;
-import static com.square.utils.Resources.BACKGROUND_MENU;
 
 public class MenuStage extends Stage {
 
     private Game game;
+
     //private GameState gameState;
     private PlayButton playButton;
     private SettingsButton settingsButton;
@@ -46,6 +42,10 @@ public class MenuStage extends Stage {
         setUpCamera();
         setUpBackground();
         setUpMainMenu();
+        setUpControls();
+    }
+
+    public void setUpControls() {
         Gdx.input.setInputProcessor(this);
     }
 
@@ -53,9 +53,7 @@ public class MenuStage extends Stage {
 
         @Override
         public void onPlay() {
-            clear();
-            game.dispose();
-            game.setScreen(new GameScreen(game));
+            game.setScreen(new GameScreen(game, game.getScreen()));
         }
     }
 

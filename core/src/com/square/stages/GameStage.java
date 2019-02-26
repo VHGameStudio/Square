@@ -262,7 +262,6 @@ public class GameStage extends Stage implements ContactListener {
         public void onPause() {
             clear();
             game.dispose();
-            game.setScreen(new MenuScreen(game));
         }
     }
 }

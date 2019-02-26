@@ -10,7 +10,6 @@ import static com.square.utils.Constants.VIEWPORT_WIDTH;
 
 public class MenuScreen implements Screen {
     private MenuStage stage;
-    //private Game game;
 
     public MenuScreen(Game game) {
         stage = new MenuStage(game);
@@ -33,7 +32,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void show() {
-
+        stage.setUpControls();
     }
 
     @Override

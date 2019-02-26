@@ -17,6 +17,6 @@ public class GameRun extends Game {
 
     @Override
     public void dispose() {
-        screen = null;
+        screen.dispose();
     }
 }

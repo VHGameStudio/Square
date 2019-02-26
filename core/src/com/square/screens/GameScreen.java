@@ -11,9 +11,13 @@ import static com.square.utils.Constants.VIEWPORT_WIDTH;
 public class GameScreen implements Screen {
 
     private GameStage stage;
+    private Game game_;
+    private Screen menu_screen_;
 
-    public GameScreen(Game game) {
+    public GameScreen(Game game, Screen menu_screen) {
         stage = new GameStage(game);
+        game_ = game;
+        menu_screen_ = menu_screen;
     }
 
     @Override
@@ -53,7 +57,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        game_.setScreen(menu_screen_);
     }
 
 }
