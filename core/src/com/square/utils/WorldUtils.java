@@ -104,8 +104,10 @@ public class WorldUtils {
 
         int minW, minH;
         minH = minW = 2;
-        int maxW = (int) abs(topLeft.x - bottomRight.x) / 3;
-        int maxH = (int) abs(topLeft.y - bottomRight.y) / 3;
+        /*int maxW = (int) abs(topLeft.x - bottomRight.x) / 3;
+        int maxH = (int) abs(topLeft.y - bottomRight.y) / 3;*/
+        int maxW = 20;
+        int maxH = 20;
 
         float w = minW + rnd.nextInt(maxW - minW + 1);
         float h = minH + rnd.nextInt(maxH - minH + 1);

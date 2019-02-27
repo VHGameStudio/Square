@@ -72,22 +72,22 @@ public class MenuStage extends Stage {
     private void setUpBackground() {
         Random rnd = new Random(System.currentTimeMillis());
 
-        Vector2 topLeft = new Vector2(
-                0 - camera.viewportHeight / 2,
-                0 - camera.viewportWidth / 2);
-        Vector2 bottomRight = new Vector2(
-                camera.viewportHeight / 2,
-                camera.viewportWidth / 2);
+        int step = 5;
+        int H = (int) (step * 2 + camera.viewportHeight / 2);
+        int W = (int) (step * 2 + camera.viewportWidth / 2);
 
-        for (int i = 0; i < 40; ++i) {
-            int color = rnd.nextInt(20 + 1);
-            addActor(new DynamicBackground(
-                            WorldUtils.createBackRect(world, topLeft, bottomRight),
-                            camera,
-                            color));
+        for (int i = 0 - H; i < H; i += step) {
+            for (int j = 0 - W; j < W; j += step) {
+                Vector2 tmp1 = new Vector2(i, j);
+                Vector2 tmp2 = new Vector2(i + step, j + step);
+                int color = rnd.nextInt(20 + 1);
+                addActor(new DynamicBackground(
+                        WorldUtils.createBackRect(world, tmp1, tmp2),
+                        camera,
+                        color));
+            }
         }
 
-        // A background strip for buttons
         int devisor1 = 7;
         addActor(new DynamicBackground(WorldUtils.createBackRect(
                 world,
