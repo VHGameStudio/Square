@@ -15,13 +15,12 @@ import com.square.box2d.SquareUserData;
 
 import java.util.Random;
 
-import jdk.nashorn.internal.runtime.WithObject;
-
 import static com.square.utils.Constants.BORDER_DENSITY;
 import static com.square.utils.Constants.CIRCLE_DENSITY;
 import static com.square.utils.Constants.CIRCLE_RADIUS;
 import static com.square.utils.Constants.SQUARE_DENSITY;
 import static com.square.utils.Constants.WALL_DENSITY;
+import static java.lang.Math.abs;
 
 public class WorldUtils {
 
@@ -100,13 +99,18 @@ public class WorldUtils {
         return body;
     }
 
-    public static Body createBackRect(World world) {
+    public static Body createBackRect(World world, Vector2 topLeft, Vector2 bottomRight) {
         Random rnd = new Random(System.currentTimeMillis());
 
-        float w = 2 + rnd.nextInt(30 - 2 + 1);
-        float h = 2 + rnd.nextInt(30 - 2 + 1);
-        float x = -40 + rnd.nextInt(40 - (-40) + 1);
-        float y = -40 + rnd.nextInt(40 - (-40) + 1);
+        int minW, minH;
+        minH = minW = 2;
+        int maxW = (int) abs(topLeft.x - bottomRight.x) / 3;
+        int maxH = (int) abs(topLeft.y - bottomRight.y) / 3;
+
+        float w = minW + rnd.nextInt(maxW - minW + 1);
+        float h = minH + rnd.nextInt(maxH - minH + 1);
+        float x = topLeft.x + rnd.nextInt((int) (abs(bottomRight.x - topLeft.x) + 1));
+        float y = topLeft.y + rnd.nextInt((int) (abs(bottomRight.y - topLeft.y) + 1));
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
@@ -122,11 +126,11 @@ public class WorldUtils {
         return body;
     }
 
-    public static Body createBackRect(World world, Vector2 start, float width, float height) {
+    public static Body createBackRect(World world, Vector2 topLeft, float width, float height) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
         bodyDef.fixedRotation = true;
-        bodyDef.position.set(start);
+        bodyDef.position.set(topLeft);
         Body body = world.createBody(bodyDef);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(width / 2f, height / 2f);
