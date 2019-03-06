@@ -7,11 +7,11 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.square.box2d.BorderUserData;
-import com.square.box2d.CircleUserData;
-import com.square.box2d.DynamicBackgroundUserData;
-import com.square.box2d.WallUserData;
-import com.square.box2d.SquareUserData;
+import com.square.figure2d.BorderUserData;
+import com.square.figure2d.CircleUserData;
+import com.square.figure2d.DynamicBackgroundUserData;
+import com.square.figure2d.WallUserData;
+import com.square.figure2d.SquareUserData;
 
 import java.util.Random;
 

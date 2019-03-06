@@ -52,4 +52,7 @@ public class Constants {
 
     public static final int SIMPLE_COLOR_NUM = 21;
 
+    public static final float DYNAMIC_MENU_DELTA = 10;
+    public static final float DYNAMIC_SPAWN_EPS = 0.1f;
+
 }

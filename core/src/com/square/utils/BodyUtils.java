@@ -1,7 +1,7 @@
 package com.square.utils;
 
 import com.badlogic.gdx.physics.box2d.Body;
-import com.square.box2d.UserData;
+import com.square.figure2d.UserData;
 import com.square.enums.UserDataType;
 
 public class BodyUtils {

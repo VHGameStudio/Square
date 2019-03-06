@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.square.box2d.UserData;
+import com.square.figure2d.UserData;
 
 import static com.square.utils.Constants.WORLD_TO_SCREEN;
 import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;

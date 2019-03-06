@@ -1,4 +1,4 @@
-package com.square.box2d;
+package com.square.figure2d;
 
 import com.square.enums.UserDataType;
 

@@ -34,6 +34,8 @@ public class MenuStage extends Stage {
     private SoundButton soundButton;
     private OrthographicCamera camera;
     private World world;
+    private float accumulator = 0;
+    private final float TIME_STEP = 1 / 300f;
 
 
     public MenuStage(Game game) {
@@ -84,7 +86,7 @@ public class MenuStage extends Stage {
                 addActor(new DynamicBackground(
                         WorldUtils.createBackRect(world, tmp1, tmp2),
                         camera,
-                        color));
+                        color, true));
             }
         }
 
@@ -93,7 +95,7 @@ public class MenuStage extends Stage {
                 world,
                 new Vector2(0, 0 - camera.viewportHeight / 2 + devisor1 / 2f),
                 camera.viewportWidth,
-                camera.viewportHeight / devisor1), camera, 19));
+                camera.viewportHeight / devisor1), camera, 19,false));
 
         // A background strip for name label
         int devisor2 = 5;
@@ -101,7 +103,7 @@ public class MenuStage extends Stage {
                 world,
                 new Vector2(0, camera.viewportHeight / 7),
                 camera.viewportWidth,
-                camera.viewportHeight / devisor2), camera, 19));
+                camera.viewportHeight / devisor2), camera, 19, false));
     }
 
     private void setUpMainMenu() {
@@ -159,12 +161,23 @@ public class MenuStage extends Stage {
         camera.viewportWidth = VIEWPORT_WIDTH;
         camera.viewportHeight = VIEWPORT_WIDTH * Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
         camera.update();
-        camera.update();
     }
 
     @Override
     public OrthographicCamera getCamera() {
         return camera;
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+
+        accumulator += delta;
+
+        while (accumulator >= delta) {
+            world.step(TIME_STEP, 6, 2);
+            accumulator -= TIME_STEP;
+        }
     }
 
 }

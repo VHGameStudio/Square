@@ -1,4 +1,4 @@
-package com.square.box2d;
+package com.square.figure2d;
 
 import com.badlogic.gdx.math.Vector2;
 import com.square.enums.UserDataType;

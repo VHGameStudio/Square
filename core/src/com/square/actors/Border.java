@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.square.box2d.BorderUserData;
+import com.square.figure2d.BorderUserData;
 
 import static com.square.utils.Resources.BORDER_BLACK;
 
