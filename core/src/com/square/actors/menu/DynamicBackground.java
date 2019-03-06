@@ -38,7 +38,7 @@ public class DynamicBackground extends GameActor {
     }
 
     private Vector2 randVel() {
-        Random rnd = new Random(System.currentTimeMillis());
+        Random rnd = new Random();
         int minVel = -5;
         int maxVel = 5;
         float x = minVel + rnd.nextInt(maxVel - minVel + 1);
