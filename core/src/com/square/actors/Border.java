@@ -25,8 +25,8 @@ public class Border extends GameActor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-/*        camera.position.x = body.getPosition().x;
-        camera.position.y = body.getPosition().y;
+/*        camera.position.x = det.getPosition().x;
+        camera.position.y = det.getPosition().y;
         camera.update();*/
 
 /*        System.out.println("X: " + screenRectangle.x);

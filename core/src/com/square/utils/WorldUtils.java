@@ -7,9 +7,12 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.square.actors.EnemyDetector;
+import com.square.enums.DetectorDirection;
 import com.square.figure2d.BorderUserData;
 import com.square.figure2d.CircleUserData;
 import com.square.figure2d.DynamicBackgroundUserData;
+import com.square.figure2d.EnemyDetectorUserData;
 import com.square.figure2d.WallUserData;
 import com.square.figure2d.SquareUserData;
 
@@ -18,6 +21,7 @@ import java.util.Random;
 import static com.square.utils.Constants.BORDER_DENSITY;
 import static com.square.utils.Constants.CIRCLE_DENSITY;
 import static com.square.utils.Constants.CIRCLE_RADIUS;
+import static com.square.utils.Constants.ENEMY_DETECTOR_LEN;
 import static com.square.utils.Constants.SQUARE_DENSITY;
 import static com.square.utils.Constants.WALL_DENSITY;
 import static java.lang.Math.abs;
@@ -130,7 +134,7 @@ public class WorldUtils {
 
     public static Body createBackRect(World world, Vector2 topLeft, float width, float height) {
         BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.fixedRotation = true;
         bodyDef.position.set(topLeft);
         Body body = world.createBody(bodyDef);
@@ -141,6 +145,47 @@ public class WorldUtils {
         shape.dispose();
 
         return body;
+    }
+
+    public static Body createEnemyDetector(World world, Body body, DetectorDirection dir) {
+        Vector2 end;
+
+        switch (dir) {
+            case LEFT:
+                end = new Vector2(
+                        body.getPosition().x - ENEMY_DETECTOR_LEN,
+                        body.getPosition().y);
+                break;
+            case RIGHT: end = new Vector2(
+                    body.getPosition().x + ENEMY_DETECTOR_LEN,
+                    body.getPosition().y);
+                break;
+            case UP: end = new Vector2(
+                    body.getPosition().x,
+                    body.getPosition().y - ENEMY_DETECTOR_LEN);
+                break;
+            case DOWN: end = new Vector2(
+                    body.getPosition().x,
+                    body.getPosition().y + ENEMY_DETECTOR_LEN);
+                break;
+            default:
+                end = new Vector2();
+        }
+
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.fixedRotation = true;
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        EdgeShape shape = new EdgeShape();
+        shape.set(body.getPosition(), end);
+        Body det = world.createBody(bodyDef);
+        det.setUserData(new EnemyDetectorUserData());
+        det.createFixture(shape, BORDER_DENSITY);
+        shape.dispose();
+        det.setSleepingAllowed(false);
+
+        det.getFixtureList().get(0).setSensor(true);
+
+        return det;
     }
 
 }

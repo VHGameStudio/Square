@@ -7,8 +7,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.square.enums.DetectorDirection;
 import com.square.figure2d.UserData;
 
+import static com.square.enums.UserDataType.DETECTOR;
+import static com.square.utils.Constants.ENEMY_DETECTOR_LEN;
 import static com.square.utils.Constants.WORLD_TO_SCREEN;
 import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
 
@@ -33,10 +36,10 @@ public abstract class GameActor extends Actor {
     public void act(float delta) {
         super.act(delta);
 
-        if (body.getUserData() != null) {
-            updateRectangle();
-        } else {
+        if (body.getUserData() == null) {
             remove();
+        } else {
+            updateRectangle();
         }
     }
 

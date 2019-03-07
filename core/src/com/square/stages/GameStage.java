@@ -17,15 +17,19 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.square.actors.Background;
 import com.square.actors.Border;
 import com.square.actors.Circle;
+import com.square.actors.EnemyDetector;
 import com.square.actors.MapBackground;
 import com.square.actors.Wall;
 import com.square.actors.Square;
 import com.square.actors.menu.GameButton;
 import com.square.actors.menu.PauseButton;
+import com.square.enums.DetectorDirection;
+import com.square.enums.UserDataType;
 import com.square.screens.MenuScreen;
 import com.square.utils.BodyUtils;
 import com.square.utils.WorldUtils;
 
+import static com.square.enums.UserDataType.SQUARE;
 import static com.square.utils.Constants.BORDER_HEIGTH;
 import static com.square.utils.Constants.BORDER_WIDTH;
 
@@ -103,12 +107,20 @@ public class GameStage extends Stage implements ContactListener {
         Body a = contact.getFixtureA().getBody();
         Body b = contact.getFixtureB().getBody();
 
-        if ((BodyUtils.bodyIsSquare(a) && BodyUtils.bodyIsWall(b)) ||
-                (BodyUtils.bodyIsWall(a) && BodyUtils.bodyIsSquare(b))) {
-
+        if ((BodyUtils.bodyIsDetector(a) && BodyUtils.bodyIsSquare(b)) ||
+                (BodyUtils.bodyIsSquare(a) && BodyUtils.bodyIsDetector(b))) {
+            System.out.println("Detector - Square");
         }
 
+        if ((BodyUtils.bodyIsCircle(a) && BodyUtils.bodyIsDetector(b)) ||
+                (BodyUtils.bodyIsDetector(a) && BodyUtils.bodyIsCircle(b))) {
+            System.out.println("Circle - Detector");
+        }
 
+        if ((BodyUtils.bodyIsCircle(a) && BodyUtils.bodyIsSquare(b)) ||
+                (BodyUtils.bodyIsSquare(a) && BodyUtils.bodyIsCircle(b))) {
+            System.out.println("Circle - Square");
+        }
     }
 
     @Override
@@ -160,14 +172,29 @@ public class GameStage extends Stage implements ContactListener {
         }
     }
 
+    private void setUpDetector() {
+        addActor(new EnemyDetector(
+                WorldUtils.createEnemyDetector(world, square.getBody(), DetectorDirection.LEFT),
+                square.getBody()));
+        addActor(new EnemyDetector(
+                WorldUtils.createEnemyDetector(world, square.getBody(), DetectorDirection.RIGHT),
+                square.getBody()));
+        addActor(new EnemyDetector(
+                WorldUtils.createEnemyDetector(world, square.getBody(), DetectorDirection.UP),
+                square.getBody()));
+        addActor(new EnemyDetector(
+                WorldUtils.createEnemyDetector(world, square.getBody(), DetectorDirection.DOWN),
+                square.getBody()));
+    }
+
     private void setUpCircle() {
-        //TODO: a lot of things for circles...
         addActor(new Circle(WorldUtils.createCircle(world), camera));
     }
 
     private void setUpSquare() {
         square = new Square(WorldUtils.createSquare(world), camera);
         addActor(square);
+        setUpDetector();
     }
 
     private void setUpCamera() {
@@ -195,14 +222,12 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     //TODO: comment this after we put the textures on
-/*
     @Override
     public void draw() {
         super.draw();
         renderer.render(world, camera.combined);
     }
 
-*/
 
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
@@ -223,7 +248,6 @@ public class GameStage extends Stage implements ContactListener {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         actual = new Vector2(screenX, screenY);
         Vector2 tmp;
-
         if (previous != null) {
             tmp = new Vector2(
                     actual.x - previous.x,
@@ -246,7 +270,6 @@ public class GameStage extends Stage implements ContactListener {
 
     private void setUpPause() {
         float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
-        float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
         float pos_x = 50;
         float width = GAME_BUTTON_WIDTH * coef_y;
         float height = GAME_BUTTON_HEIGHT * coef_y;

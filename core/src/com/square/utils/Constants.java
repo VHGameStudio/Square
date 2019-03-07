@@ -55,4 +55,7 @@ public class Constants {
     public static final float DYNAMIC_MENU_DELTA = 10;
     public static final float DYNAMIC_SPAWN_EPS = 0.1f;
 
+    public static final float ENEMY_DETECTOR_LEN =
+            (BORDER_HEIGTH < BORDER_WIDTH) ? (BORDER_WIDTH) : (BORDER_HEIGTH);
+
 }

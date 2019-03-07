@@ -6,6 +6,7 @@ public enum UserDataType {
     SQUARE,
     CIRCLE,
     BORDER,
-    BG_PART //Background square
+    BG_PART, //Background square
+    DETECTOR
 
 }

@@ -58,4 +58,8 @@ public class Square extends GameActor {
     public void stop() {
         body.setLinearVelocity(SQUARE_ZERO_VELOCITY);
     }
+
+    public Body getBody() {
+        return body;
+    }
 }

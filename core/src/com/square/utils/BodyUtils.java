@@ -24,4 +24,10 @@ public class BodyUtils {
         return userData != null && userData.getUserDataType() == UserDataType.CIRCLE;
     }
 
+    public static boolean bodyIsDetector(Body body) {
+        UserData userData = (UserData) body.getUserData();
+
+        return userData != null && userData.getUserDataType() == UserDataType.DETECTOR;
+    }
+
 }
