@@ -76,11 +76,11 @@ public class MenuStage extends Stage {
             for (int j = 0 - W; j < W; j += step) {
                 Vector2 tmp1 = new Vector2(i, j);
                 Vector2 tmp2 = new Vector2(i + step, j + step);
-                int color = rnd.nextInt(20 + 1);
+                Integer color = rnd.nextInt(20 + 1);
                 addActor(new DynamicBackground(
                         WorldUtils.createBackRect(world, tmp1, tmp2),
                         camera,
-                        color, true));
+                        color.toString(), true));
             }
         }
 
@@ -89,7 +89,7 @@ public class MenuStage extends Stage {
                 world,
                 new Vector2(0, 0 - camera.viewportHeight / 2 + devisor1 / 2f),
                 camera.viewportWidth,
-                camera.viewportHeight / devisor1), camera, 19,false));
+                camera.viewportHeight / devisor1), camera, "bg1", false));
 
         // A background strip for name label
         int devisor2 = 5;
@@ -97,7 +97,7 @@ public class MenuStage extends Stage {
                 world,
                 new Vector2(0, camera.viewportHeight / 7),
                 camera.viewportWidth,
-                camera.viewportHeight / devisor2), camera, 19, false));
+                camera.viewportHeight / devisor2), camera, "bg2", false));
     }
 
     private void setUpMainMenu() {

@@ -22,7 +22,7 @@ public class DynamicBackground extends GameActor {
     Vector2 spawnPoint;
     boolean moving;
 
-    public DynamicBackground(Body body, OrthographicCamera camera, Integer color, boolean moving) {
+    public DynamicBackground(Body body, OrthographicCamera camera, String color, boolean moving) {
         super(body);
         this.camera = camera;
 
@@ -34,7 +34,7 @@ public class DynamicBackground extends GameActor {
         }
 
         skin = new Skin(AssetsManager.getColorsTextureAtlas());
-        textureRegion = skin.getRegion(color.toString());
+        textureRegion = skin.getRegion(color);
     }
 
     private Vector2 randVel() {
