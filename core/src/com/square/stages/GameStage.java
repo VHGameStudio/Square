@@ -23,6 +23,7 @@ import com.square.actors.Wall;
 import com.square.actors.Square;
 import com.square.actors.menu.GameButton;
 import com.square.actors.menu.PauseButton;
+import com.square.enums.ButtonBounds;
 import com.square.enums.DetectorDirection;
 import com.square.enums.UserDataType;
 import com.square.screens.MenuScreen;
@@ -33,12 +34,6 @@ import static com.square.enums.UserDataType.SQUARE;
 import static com.square.utils.Constants.BORDER_HEIGTH;
 import static com.square.utils.Constants.BORDER_WIDTH;
 
-import static com.square.utils.Constants.GAME_BUTTON_HEIGHT;
-import static com.square.utils.Constants.GAME_BUTTON_WIDTH;
-import static com.square.utils.Constants.MENU_BUTTON_HEIGHT;
-import static com.square.utils.Constants.MENU_BUTTON_WIDTH;
-import static com.square.utils.Constants.DEFAULT_SCREEN_HEIGHT;
-import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
 import static com.square.utils.Constants.NEW_COORDINATE_PLANE_DELTA;
 import static com.square.utils.Resources.MAP_BACKGROUND;
 import static com.square.utils.Resources.OUTER_MAP_BACKGROUND;
@@ -269,13 +264,8 @@ public class GameStage extends Stage implements ContactListener {
     }
 
     private void setUpPause() {
-        float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
-        float pos_x = 50;
-        float width = GAME_BUTTON_WIDTH * coef_y;
-        float height = GAME_BUTTON_HEIGHT * coef_y;
-        float pos_y = (Gdx.graphics.getHeight() - height - 50);
 
-        Rectangle pauseButtonBounds = new Rectangle(pos_x, pos_y, width, height);
+        Rectangle pauseButtonBounds = ButtonBounds.PAUSE.getBounds();
         pauseButton = new PauseButton(pauseButtonBounds, new GamePauseButtonListener());
         addActor(pauseButton);
     }

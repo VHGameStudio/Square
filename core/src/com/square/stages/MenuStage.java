@@ -11,23 +11,17 @@ import com.square.actors.menu.DynamicBackground;
 import com.square.actors.menu.PlayButton;
 import com.square.actors.menu.SettingsButton;
 import com.square.actors.menu.SoundButton;
+import com.square.enums.ButtonBounds;
 import com.square.screens.GameScreen;
 import com.square.utils.WorldUtils;
 
 import java.util.Random;
 
-import static com.square.utils.Constants.DEFAULT_SCREEN_HEIGHT;
-import static com.square.utils.Constants.DEFAULT_SCREEN_WIDTH;
-import static com.square.utils.Constants.MENU_BUTTON_DELTA;
-import static com.square.utils.Constants.MENU_BUTTON_HEIGHT;
-import static com.square.utils.Constants.MENU_BUTTON_WIDTH;
-import static com.square.utils.Constants.MENU_BUTTON_Y;
 import static com.square.utils.Constants.VIEWPORT_WIDTH;
 
 public class MenuStage extends Stage {
 
     private Game game;
-
     //private GameState gameState;
     private PlayButton playButton;
     private SettingsButton settingsButton;
@@ -113,44 +107,19 @@ public class MenuStage extends Stage {
     }
 
     private void setUpPlay() {
-        //TODO: make implimentation for calculation buttons bounds
-        float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
-        float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
-        float pos_x = (getCamera().position.x + Gdx.graphics.getWidth() - MENU_BUTTON_WIDTH * coef_y) / 2;
-        float pos_y = (MENU_BUTTON_Y * coef_y);
-        float width = MENU_BUTTON_WIDTH * coef_y;
-        float height = MENU_BUTTON_HEIGHT * coef_y;
-
-        Rectangle playButtonBounds = new Rectangle(pos_x,
-                pos_y, width, height);
+        Rectangle playButtonBounds = ButtonBounds.PLAY.getBounds();
         playButton = new PlayButton(playButtonBounds, new MenuPlayButtonListener());
         addActor(playButton);
     }
 
     private void setUpSettings() {
-        float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
-        float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
-        float pos_x = playButton.getX() - MENU_BUTTON_DELTA * coef_x;
-        float pos_y = (MENU_BUTTON_Y * coef_y);
-        float width = MENU_BUTTON_WIDTH * coef_y;
-        float height = MENU_BUTTON_HEIGHT * coef_y;
-
-        Rectangle settingsButtonBounds = new Rectangle(pos_x,
-                pos_y, width, height);
+        Rectangle settingsButtonBounds = ButtonBounds.SETTINGS.getBounds();
         settingsButton = new SettingsButton(settingsButtonBounds, new MenuSettingsButtonListener());
         addActor(settingsButton);
     }
 
     private void setUpSound() {
-        float coef_y = Gdx.graphics.getHeight() / DEFAULT_SCREEN_HEIGHT;
-        float coef_x = Gdx.graphics.getWidth() / DEFAULT_SCREEN_WIDTH;
-        float pos_x = playButton.getX() + MENU_BUTTON_DELTA * coef_x;
-        float pos_y = (MENU_BUTTON_Y * coef_y);
-        float width = MENU_BUTTON_WIDTH * coef_y;
-        float height = MENU_BUTTON_HEIGHT * coef_y;
-
-        Rectangle soundButtonBounds = new Rectangle(pos_x,
-                pos_y, width, height);
+        Rectangle soundButtonBounds = ButtonBounds.SOUND.getBounds();
         soundButton = new SoundButton(soundButtonBounds);
         addActor(soundButton);
     }

@@ -11,19 +11,18 @@ import static com.square.utils.Constants.VIEWPORT_WIDTH;
 public class GameScreen implements Screen {
 
     private GameStage stage;
-    private Game game_;
-    private Screen menu_screen_;
+    private Game game;
+    private Screen menuScreen;
 
-    public GameScreen(Game game, Screen menu_screen) {
+    public GameScreen(Game game, Screen menuScreen) {
         stage = new GameStage(game);
-        game_ = game;
-        menu_screen_ = menu_screen;
+        this.game = game;
+        this.menuScreen = menuScreen;
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         stage.draw();
         stage.act(delta);
     }
@@ -35,9 +34,10 @@ public class GameScreen implements Screen {
         stage.getCamera().update();
     }
 
+
     @Override
     public void show() {
-
+        stage.draw();
     }
 
     @Override
@@ -57,7 +57,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        game_.setScreen(menu_screen_);
+        game.setScreen(menuScreen);
     }
 
 }
